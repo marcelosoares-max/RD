@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blip × RD Saúde · O futuro do relacionamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rd:#008A3E; --rd-dk:#00662C; --rd-dker:#004A20; --rd-lt:#39B36A; --rd-lter:#8AD3A6;
+  --mint:#E9F5EE; --mint2:#F3FAF6; --wash:#DDEFE4;
+  --ink:#0C2417; --head:#123A26; --body:#4B5D53; --dim:#7B8C82; --faint:#A7B5AC;
+  --line:#E0EBE4; --line-2:#EDF4EF; --card:#FFFFFF;
+  --gold:#E39A00; --amber:#F2A917; --blip:#0096FA; --blip-dk:#0C4EC0;
+  --good:#0F9D58; --bad:#E5484D; --purple:#7B61FF;
+  --wa-head:#128C7E; --wa-bg:#ECE5DD; --wa-in:#FFFFFF; --wa-out:#DCF8C6; --wa-time:#667781;
+  --r:22px; --r-s:14px; --mx:min(1240px,92vw);
+  --font:'Sora',system-ui,-apple-system,Segoe UI,sans-serif;
+  --body-f:'Inter','Sora',system-ui,sans-serif;
+  --mono:'Space Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sh:0 1px 2px rgba(12,36,23,.04),0 8px 24px rgba(12,36,23,.05);
+  --sh-lg:0 24px 60px rgba(12,36,23,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{font-family:var(--body-f);background:var(--mint2);color:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;
+  background:
+   radial-gradient(56% 46% at 88% -4%, rgba(0,138,62,.10), transparent 60%),
+   radial-gradient(48% 50% at 2% 96%, rgba(57,179,106,.09), transparent 62%),
+   linear-gradient(170deg,#F3FAF6 0%,#EAF6EE 46%,#F3FAF6 100%);}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.55;
+  background-image:linear-gradient(rgba(0,102,44,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,102,44,.035) 1px,transparent 1px);
+  background-size:74px 74px;mask-image:radial-gradient(circle at 50% 20%,#000,transparent 84%)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--rd-lter);color:#06301B}
+:focus-visible{outline:2px solid var(--rd);outline-offset:3px;border-radius:5px}
+
+/* ---------- chrome ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--rd),var(--rd-lt),var(--gold));width:0;z-index:120;transition:width .1s linear}
+.topbar{position:fixed;top:0;left:0;right:0;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,4vw);z-index:100;transition:.35s}
+.topbar.solid{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);height:58px;box-shadow:0 6px 24px rgba(12,36,23,.05)}
+.topbar .lft{display:flex;align-items:center;gap:14px}
+.brand{font-family:var(--font);font-weight:800;letter-spacing:-.02em;color:var(--rd-dk);font-size:18px;display:flex;align-items:center;gap:9px}
+.brand .dotmk{width:22px;height:22px;border-radius:7px 7px 7px 2px;background:linear-gradient(135deg,var(--rd),var(--rd-lt));display:inline-block}
+.topbar .x{color:var(--faint);font-weight:300;font-size:19px}
+.topbar .rd-lg{font-family:var(--font);font-weight:800;color:var(--rd);letter-spacing:-.01em;font-size:16px}
+.topbar .r{font-size:12px;color:var(--dim);font-weight:500}
+@media(max-width:640px){.topbar .r{display:none}}
+
+.dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:11px}
+.dots a{width:9px;height:9px;border-radius:50%;background:rgba(0,102,44,.18);transition:.25s;position:relative;display:block}
+.dots a.on{background:var(--rd);transform:scale(1.45);box-shadow:0 0 0 4px rgba(0,138,62,.14)}
+.dots a span{position:absolute;right:22px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:11px;color:var(--head);background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:7px;opacity:0;pointer-events:none;transition:.2s;box-shadow:var(--sh);font-weight:500}
+.dots a:hover span,.dots a:focus-visible span{opacity:1}
+@media(max-width:1120px){.dots{display:none}}
+
+/* ---------- rhythm ---------- */
+section{position:relative;padding:11vh max(22px,4vw)}
+section[id]{scroll-margin-top:80px}
+.wrap{max-width:var(--mx);margin:0 auto;width:100%}
+.eyebrow{font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--rd);display:inline-flex;align-items:center;gap:11px;margin-bottom:16px}
+.eyebrow::before{content:"";width:26px;height:2px;background:currentColor;border-radius:2px}
+.eyebrow.gold{color:var(--gold)} .eyebrow.blip{color:var(--blip)} .eyebrow.dk{color:var(--rd-dk)}
+h2{font-family:var(--font);font-size:clamp(27px,4.1vw,49px);font-weight:800;line-height:1.07;letter-spacing:-.025em;color:var(--head)}
+h2 .g{color:var(--rd)} h2 .go{color:var(--gold)} h2 .b{color:var(--blip)}
+h3{font-family:var(--font);font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--head)}
+.lead{font-size:clamp(15px,1.4vw,19px);color:var(--body);font-weight:400;line-height:1.66;max-width:64ch;margin-top:16px}
+.lead b{color:var(--head);font-weight:600}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.84,.44,1),transform .8s cubic-bezier(.16,.84,.44,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none}}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:70px;overflow:hidden;position:relative}
+.heroart{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.heroart .blob{position:absolute;border-radius:46% 54% 50% 50%/52% 48% 52% 48%;transform:translate(-50%,-50%);left:80%;top:38%}
+.heroart .b1{width:360px;height:360px;background:radial-gradient(circle at 40% 36%,rgba(0,138,62,.22),transparent 68%)}
+.heroart .b2{width:660px;height:660px;background:radial-gradient(circle at 40% 36%,rgba(57,179,106,.14),transparent 72%)}
+.heroart .b3{width:980px;height:980px;background:radial-gradient(circle at 40% 36%,rgba(227,154,0,.06),transparent 70%)}
+@media(prefers-reduced-motion:no-preference){.heroart .blob{animation:float 15s ease-in-out infinite alternate}.heroart .b2{animation-delay:-4s}.heroart .b3{animation-delay:-8s}
+@keyframes float{0%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(1.09) rotate(7deg)}}}
+.hero .wrap{position:relative;z-index:2}
+.cobrand{display:flex;align-items:center;gap:18px;margin-bottom:30px;flex-wrap:wrap}
+.cobrand .brand{font-size:26px}.cobrand .brand .dotmk{width:30px;height:30px}
+.cobrand .x{color:var(--faint);font-weight:200;font-size:26px}
+.cobrand .rd-lg{font-size:30px}
+.hero h1{font-family:var(--font);font-size:clamp(35px,6.3vw,80px);font-weight:800;line-height:1.02;letter-spacing:-.033em;max-width:17ch;color:var(--ink)}
+.hero h1 .g{color:var(--rd)} .hero h1 .go{color:var(--gold)}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(24px);animation:wordIn .72s cubic-bezier(.16,.84,.44,1) forwards}
+@keyframes wordIn{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.hero h1 .w{animation:none;opacity:1;transform:none}}
+.hero .sub{margin-top:24px;font-size:clamp(15px,1.5vw,20px);color:var(--body);font-weight:400;max-width:58ch;line-height:1.62}
+.hero .sub b{color:var(--head);font-weight:600}
+.hero .meta{margin-top:32px;display:flex;gap:10px;flex-wrap:wrap}
+.pill{font-size:12px;letter-spacing:.01em;color:var(--rd-dk);border:1px solid var(--wash);background:#fff;padding:8px 15px;border-radius:999px;font-weight:600;box-shadow:var(--sh)}
+.pill.g{background:rgba(0,138,62,.08);border-color:rgba(0,138,62,.24);color:var(--rd-dk)}
+.pill.go{background:rgba(227,154,0,.10);border-color:rgba(227,154,0,.30);color:var(--gold)}
+.pill.b{background:rgba(0,150,250,.08);border-color:rgba(0,150,250,.28);color:var(--blip-dk)}
+.scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--dim);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;z-index:2;font-weight:600}
+.scrollcue .m{width:22px;height:34px;border:1.5px solid rgba(0,102,44,.28);border-radius:12px;position:relative}
+.scrollcue .m::after{content:"";position:absolute;left:50%;top:6px;transform:translateX(-50%);width:4px;height:7px;border-radius:2px;background:var(--rd);animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:0;top:6px}40%{opacity:1}80%{opacity:0;top:16px}100%{opacity:0}}
+
+/* ---------- chapters ---------- */
+.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:5vh}
+.chp{display:block;border-radius:18px;padding:22px;border:1px solid var(--line);background:var(--card);transition:.26s;box-shadow:var(--sh)}
+.chp:hover{border-color:var(--rd-lt);transform:translateY(-3px);box-shadow:var(--sh-lg)}
+.chp .cn{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--rd);letter-spacing:.06em}
+.chp:nth-child(2) .cn{color:var(--rd-lt)}.chp:nth-child(3) .cn{color:var(--gold)}.chp:nth-child(4) .cn{color:var(--blip)}.chp:nth-child(5) .cn{color:var(--purple)}
+.chp h4{font-family:var(--font);font-size:16px;color:var(--head);margin:12px 0 8px;letter-spacing:-.01em}
+.chp p{font-size:12.5px;color:var(--body);line-height:1.55}
+
+/* ---------- kpis ---------- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:5vh}
+.kpi{border-left:3px solid var(--rd);padding:2px 0 2px 16px}
+.kpi.go{border-color:var(--gold)} .kpi.b{border-color:var(--blip)} .kpi.lt{border-color:var(--rd-lt)}
+.kpi .n{font-family:var(--font);font-size:clamp(24px,2.9vw,38px);font-weight:800;letter-spacing:-.028em;line-height:1;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12.5px;color:var(--body);font-weight:400;line-height:1.5;margin-top:9px}
+.kpi .v{font-size:11px;font-weight:600;margin-top:6px;color:var(--good)}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr);gap:20px 16px}}
+
+.bb-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.bbt{font-size:11.5px;font-weight:600;border-radius:999px;padding:8px 15px;white-space:nowrap;border:1px solid}
+.bbt.g{background:rgba(0,138,62,.07);color:var(--rd-dk);border-color:rgba(0,138,62,.24)}
+.bbt.go{background:rgba(227,154,0,.09);color:var(--gold);border-color:rgba(227,154,0,.3)}
+.bbt.b{background:rgba(0,150,250,.07);color:var(--blip-dk);border-color:rgba(0,150,250,.26)}
+.bbt.p{background:rgba(123,97,255,.08);color:var(--purple);border-color:rgba(123,97,255,.26)}
+
+.mnote{font-size:11px;color:var(--faint);font-weight:400;line-height:1.5;margin-top:22px}
+
+/* ---------- exec / pain / fix panels ---------- */
+.exec{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:5vh}
+@media(max-width:820px){.exec{grid-template-columns:1fr}}
+.ex{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:24px 26px;box-shadow:var(--sh)}
+.ex p{font-size:14.5px;line-height:1.62;color:var(--body)}
+.ex p b{color:var(--head);font-weight:600}
+.exh{font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:13px}
+.ex.gain{background:linear-gradient(155deg,rgba(0,138,62,.07),rgba(255,255,255,.4));border-color:rgba(0,138,62,.24)}
+.ex.gain .exh{color:var(--rd)}
+.ex.warn{background:linear-gradient(155deg,rgba(227,154,0,.08),rgba(255,255,255,.4));border-color:rgba(227,154,0,.28)}
+.ex.warn .exh{color:var(--gold)}
+.ex.bad{background:linear-gradient(155deg,rgba(229,72,77,.06),rgba(255,255,255,.4));border-color:rgba(229,72,77,.24)}
+.ex.bad .exh{color:var(--bad)}
+.ex ol.steps{margin:2px 0 0 0;padding-left:18px;display:flex;flex-direction:column;gap:8px}
+.ex ol.steps li{font-size:13.5px;color:var(--body);line-height:1.5}
+.ex ol.steps li b{color:var(--head);font-weight:600}
+.gchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.gchips span{font-size:10.5px;font-weight:600;padding:5px 10px;border-radius:8px;background:rgba(0,138,62,.09);color:var(--rd-dk)}
+.gchips span.go{background:rgba(227,154,0,.12);color:var(--gold)}
+.gchips span.b{background:rgba(0,150,250,.10);color:var(--blip-dk)}
+
+.mres{background:rgba(0,138,62,.06);border:1px solid rgba(0,138,62,.22);border-radius:16px;padding:18px 22px;font-size:15px;color:var(--head);font-weight:400;line-height:1.62;margin-top:4vh}
+.mres b{color:var(--rd-dk);font-weight:700}
+.mres.go{background:rgba(227,154,0,.07);border-color:rgba(227,154,0,.26)}
+.mres.go b{color:var(--gold)}
+
+.pains,.fixes{display:flex;flex-direction:column;gap:10px}
+.pain{display:flex;gap:13px;align-items:flex-start;padding:13px 16px;border:1px solid rgba(229,72,77,.2);background:rgba(229,72,77,.05);border-radius:13px}
+.pain .pi{width:26px;height:26px;border-radius:8px;background:rgba(229,72,77,.14);display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:14px}
+.pain .px{font-size:13.5px;color:var(--body);line-height:1.5}.pain .px b{color:#a3282c;font-weight:600}
+.fix{display:flex;gap:13px;align-items:flex-start;padding:13px 16px;border:1px solid rgba(0,138,62,.24);background:rgba(0,138,62,.05);border-radius:13px}
+.fix .pi{width:26px;height:26px;border-radius:8px;background:rgba(0,138,62,.14);display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:14px}
+.fix .px{font-size:13.5px;color:var(--body);line-height:1.5}.fix .px b{color:var(--rd-dk);font-weight:600}
+
+/* ---------- product grid ---------- */
+.prodgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:5vh}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px;transition:.28s;box-shadow:var(--sh);position:relative}
+.pc:hover{border-color:var(--rd-lt);transform:translateY(-3px);box-shadow:var(--sh-lg)}
+.pc .nn{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.05em;margin-bottom:12px}
+.pc .ic{width:40px;height:40px;border-radius:12px;background:rgba(0,138,62,.10);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:19px}
+.pc h4{font-family:var(--font);font-size:15px;font-weight:700;color:var(--head);margin-bottom:7px;letter-spacing:-.01em}
+.pc p{font-size:12.5px;color:var(--body);line-height:1.52}
+.pc .tag{position:absolute;right:16px;top:16px;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--rd);padding:4px 9px;border-radius:7px}
+
+/* ---------- deep-dive blocks ---------- */
+.deep{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;margin-top:5vh}
+.deep.rev{grid-template-columns:.95fr 1.05fr}
+.deep.rev .deep-txt{order:2}.deep.rev .deep-vis{order:1}
+@media(max-width:940px){.deep,.deep.rev{grid-template-columns:1fr;gap:30px}.deep.rev .deep-txt,.deep.rev .deep-vis{order:0}}
+.stepnum{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--rd);margin-bottom:8px}
+.stepnum .cir{width:26px;height:26px;border-radius:50%;background:var(--rd);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.stepnum .prod{color:var(--dim);font-weight:600;letter-spacing:.02em}
+.deep h3{font-size:clamp(20px,2.3vw,28px);margin:6px 0 6px;line-height:1.14}
+.deep .desc{font-size:14.5px;color:var(--body);line-height:1.62;margin-bottom:6px}
+.deep .desc b{color:var(--head);font-weight:600}
+.exstack{display:flex;flex-direction:column;gap:14px;margin-top:20px}
+
+/* ---------- WhatsApp phone ---------- */
+.phone-frame{width:310px;max-width:100%;height:640px;background:#0e1512;border-radius:40px;border:7px solid #1d2521;overflow:hidden;position:relative;box-shadow:0 0 0 1px #cdd8d1,0 26px 60px rgba(12,36,23,.28);margin:0 auto}
+.phone-frame.sm{width:280px;height:540px}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#0e1512;border-radius:0 0 16px 16px;z-index:10}
+.wa-screen{width:100%;height:100%;display:flex;flex-direction:column;background:var(--wa-bg);font-family:-apple-system,'Helvetica Neue',sans-serif;overflow:hidden}
+.wa-header{background:var(--wa-head);padding:28px 12px 9px;display:flex;align-items:center;gap:10px;flex-shrink:0;min-height:62px}
+.wa-back{color:#fff;font-size:19px;margin-right:-4px;opacity:.9}
+.wa-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;background:linear-gradient(135deg,var(--rd),var(--rd-dk))}
+.wa-contact-name{font-size:13.5px;font-weight:600;color:#fff;display:flex;align-items:center;gap:4px}
+.wa-vf{width:13px;height:13px}
+.wa-contact-status{font-size:10.5px;color:rgba(255,255,255,.75)}
+.wa-body{flex:1;overflow-y:auto;padding:12px 8px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;min-height:0}
+.wa-body::-webkit-scrollbar{width:0}
+.wa-date-chip{align-self:center;background:rgba(225,245,254,.92);color:#546E7A;font-size:10px;padding:3px 10px;border-radius:9px;margin:4px 0}
+.msg{max-width:84%;padding:7px 10px 6px;border-radius:8px;font-size:11.5px;line-height:1.46;color:#111b21;word-break:break-word;box-shadow:0 1px .5px rgba(0,0,0,.12);position:relative}
+.msg strong{font-weight:700;color:#0a1a12}
+.msg-in{background:var(--wa-in);align-self:flex-start;border-top-left-radius:1px}
+.msg-out{background:var(--wa-out);align-self:flex-end;border-top-right-radius:1px}
+.msg-time{font-size:9px;color:var(--wa-time);text-align:right;margin-top:3px}
+.msg-sys{align-self:center;background:rgba(255,244,214,.95);color:#7a6100;font-size:9.5px;padding:4px 11px;border-radius:9px;box-shadow:none;text-align:center;max-width:92%}
+.wa-cta{background:#f6f6f6;color:#0a7ae0;font-weight:600;font-size:11px;text-align:center;padding:9px;border-top:1px solid #e6eaec;margin:5px -10px -6px;display:flex;align-items:center;justify-content:center;gap:6px}
+.wa-flow{background:#fff;border-radius:9px;overflow:hidden;box-shadow:0 1px .5px rgba(0,0,0,.12);align-self:stretch;max-width:100%}
+.wa-flow .fh{background:var(--rd);color:#fff;font-size:10.5px;font-weight:700;padding:8px 11px;display:flex;align-items:center;gap:6px}
+.wa-flow .fb{padding:10px 11px;display:flex;flex-direction:column;gap:8px}
+.wa-flow .frow{display:flex;justify-content:space-between;font-size:10.5px;color:#333}
+.wa-flow .frow b{color:#0a1a12}
+.wa-flow .fopt{border:1px solid #dfe6e1;border-radius:8px;padding:8px 10px;font-size:10.5px;color:#333;display:flex;align-items:center;gap:8px}
+.wa-flow .fopt.sel{border-color:var(--rd);background:rgba(0,138,62,.06)}
+.wa-flow .fopt .rad{width:14px;height:14px;border-radius:50%;border:2px solid #cfd8d2;flex:0 0 auto}
+.wa-flow .fopt.sel .rad{border-color:var(--rd);background:radial-gradient(circle,var(--rd) 40%,#fff 44%)}
+.wa-flow .fbtn{background:var(--rd);color:#fff;text-align:center;font-size:11px;font-weight:700;padding:9px;border-radius:8px}
+.wa-of{border:1px solid #d9e6f7;border-radius:9px;overflow:hidden;background:#fff;align-self:stretch;box-shadow:0 1px .5px rgba(0,0,0,.12)}
+.wa-of .oh{background:linear-gradient(90deg,#0a7ae0,#0a52c0);color:#fff;font-size:10px;font-weight:700;padding:7px 11px;display:flex;align-items:center;gap:6px;letter-spacing:.02em}
+.wa-of .ob{padding:9px 11px;font-size:10px;color:#31405c;line-height:1.5}
+.wa-of .banks{display:flex;gap:6px;margin-top:7px}
+.wa-of .bk{flex:1;text-align:center;border:1px solid #e4ecf6;border-radius:7px;padding:6px 3px;font-size:8.5px;color:#31405c;font-weight:600}
+.wa-input-bar{display:flex;align-items:center;gap:7px;padding:7px 9px;background:#F0F0F0;flex-shrink:0}
+.wa-input-bar .inp{flex:1;background:#fff;border-radius:20px;padding:8px 14px;font-size:11px;color:#888}
+.wa-input-bar .mic{width:34px;height:34px;border-radius:50%;background:var(--wa-head);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.wa-input-bar .mic svg{width:16px;height:16px;fill:#fff}
+
+/* ---------- mockup pairs ---------- */
+.mock-pair{display:grid;grid-template-columns:1fr 1fr;gap:52px;justify-items:center;margin:4vh 0 0}
+@media(max-width:820px){.mock-pair{grid-template-columns:1fr;gap:40px}}
+.mock-col{display:flex;flex-direction:column;align-items:center;gap:13px}
+.mock-label{font-family:var(--font);font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:6px 16px;border-radius:9px}
+.mock-label.asis{color:#c23b3f;border:1px solid rgba(229,72,77,.28);background:rgba(229,72,77,.06)}
+.mock-label.tobe{color:var(--rd);border:1px solid rgba(0,138,62,.28);background:rgba(0,138,62,.06)}
+.mock-desc{font-size:12px;color:var(--dim);text-align:center;max-width:300px;line-height:1.5}
+.scn-title{font-family:var(--font);font-size:clamp(17px,2vw,22px);font-weight:800;color:var(--head);margin:5vh 0 4px;text-align:center}
+.scn-sub{font-size:13px;color:var(--body);text-align:center;max-width:640px;margin:0 auto;line-height:1.55}
+
+/* ---------- journey ring (Studio) ---------- */
+.cyclegrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;margin-top:5vh}
+@media(max-width:920px){.cyclegrid{grid-template-columns:1fr;gap:24px}}
+.ringwrap{position:relative;width:100%;max-width:440px;aspect-ratio:1;margin:0 auto}
+.ringsvg{width:100%;height:100%;position:absolute;inset:0;z-index:1;overflow:visible}
+.ringbase{fill:none;stroke:var(--line);stroke-width:2}
+.ringdash{fill:none;stroke:rgba(0,138,62,.30);stroke-width:2;stroke-dasharray:2 13;stroke-linecap:round}
+.ringcomet{fill:none;stroke:url(#rg);stroke-width:4.5;stroke-linecap:round;stroke-dasharray:150 1044}
+.ringspin{transform-origin:250px 250px;animation:ringrot 46s linear infinite}
+.cometspin{transform-origin:250px 250px;animation:ringrot 7s linear infinite}
+@keyframes ringrot{to{transform:rotate(360deg)}}
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--sh-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:4;animation:hubpulse 3.4s ease-in-out infinite}
+@keyframes hubpulse{0%,100%{box-shadow:var(--sh-lg)}50%{box-shadow:0 0 0 10px rgba(0,138,62,.05),0 0 34px rgba(0,138,62,.16),var(--sh-lg)}}
+.hub .hubdash{position:absolute;inset:-11px;border-radius:50%;border:1.5px dashed rgba(0,138,62,.34);animation:spin 15s linear infinite}
+.hub .huborbit{position:absolute;inset:-11px;border-radius:50%;animation:spin 5.5s linear infinite}
+.hub .huborbit::after{content:"";position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--rd);box-shadow:0 0 12px 3px rgba(0,138,62,.5)}
+@media(prefers-reduced-motion:reduce){.ringspin,.cometspin,.hub,.hub .hubdash,.hub .huborbit{animation:none}}
+.hub .bl{font-family:var(--font);font-weight:800;color:var(--rd-dk);font-size:17px;line-height:1}
+.hub .st{font-family:var(--font);font-weight:700;color:var(--rd);font-size:13px;letter-spacing:.02em}
+.hub .sm{font-size:9px;color:var(--dim);margin-top:4px;letter-spacing:.06em;text-transform:uppercase}
+.rnode{position:absolute;z-index:2;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--line);border-radius:12px;padding:7px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;transition:.22s;box-shadow:var(--sh);min-width:70px}
+.rnode .ric{font-size:15px;line-height:1}
+.rnode .rlb{font-family:var(--font);font-size:11px;font-weight:700;color:var(--head)}
+.rnode .rsb{font-size:8.5px;color:var(--dim);text-align:center;line-height:1.2}
+.rnode:hover,.rnode.on{border-color:var(--rd);box-shadow:0 0 0 4px rgba(0,138,62,.10);transform:translate(-50%,-50%) scale(1.05)}
+.rnode.on{background:rgba(0,138,62,.04)}
+@media(max-width:520px){.ringwrap{max-width:340px}.rnode{min-width:56px;padding:5px 6px}.rnode .rlb{font-size:9.5px}.rnode .rsb{display:none}.hub{width:92px;height:92px}}
+.cyclepanel{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:26px 28px;box-shadow:var(--sh);min-height:280px}
+.cp-step{font-family:var(--mono);font-size:11px;color:var(--rd);font-weight:700;letter-spacing:.04em}
+.cp-name{font-family:var(--font);font-size:26px;font-weight:800;color:var(--head);letter-spacing:-.02em;margin-top:6px;line-height:1}
+.cp-role{font-size:12.5px;color:var(--dim);font-weight:600;margin-top:5px}
+.cp-lab{font-family:var(--font);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:18px 0 6px}
+.cp-what{font-size:14px;color:var(--body);line-height:1.6}
+.cp-case{margin-top:14px;padding:13px 15px;background:var(--mint);border:1px solid var(--wash);border-radius:12px}
+.cp-case p{font-size:12.5px;color:var(--rd-dk);line-height:1.55;font-weight:500}
+.cp-dots{display:flex;gap:6px;margin-top:18px}
+.cp-dots i{width:7px;height:7px;border-radius:50%;background:var(--wash)}
+.cp-dots i.on{background:var(--rd);width:20px;border-radius:5px}
+
+/* ---------- orchestrator arch ---------- */
+.orch{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,28px);flex-wrap:wrap;margin-top:4vh}
+.orch-col{display:flex;flex-direction:column;gap:9px}
+.col-label{font-family:var(--font);font-weight:700;letter-spacing:.08em;font-size:10.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.orch-item{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 14px;font-size:12.5px;color:var(--body);white-space:nowrap;box-shadow:var(--sh);transition:.24s;font-weight:500}
+.orch-item:hover{border-color:var(--rd-lt);transform:scale(1.02)}
+.orch-col.right .orch-item{flex-direction:row-reverse}
+.orch-dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.d-g{background:var(--rd)}.d-b{background:var(--blip)}.d-go{background:var(--gold)}.d-p{background:var(--purple)}.d-r{background:var(--bad)}
+.orch-center{display:flex;align-items:center;justify-content:center;padding:0 clamp(10px,2vw,30px);position:relative}
+.orch-hub{width:clamp(112px,13vw,150px);height:clamp(112px,13vw,150px);border-radius:50%;background:radial-gradient(circle,rgba(0,138,62,.14),#fff 66%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;box-shadow:0 0 50px rgba(0,138,62,.16),inset 0 0 26px rgba(0,138,62,.06);border:1px solid var(--wash)}
+.hub-ring{position:absolute;inset:-11px;border-radius:50%;border:1.5px dashed rgba(0,138,62,.4);animation:spin 13s linear infinite}
+.hub-ring2{position:absolute;inset:-24px;border-radius:50%;border:1px dashed rgba(57,179,106,.34);animation:spin 22s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.hub-ring,.hub-ring2{animation:none}}
+.orch-hub .hn{font-family:var(--font);font-weight:800;font-size:17px;color:var(--rd-dk);line-height:1;z-index:1}
+.orch-hub .hs{font-family:var(--font);font-weight:800;font-size:20px;color:var(--rd);line-height:1.1;z-index:1}
+.spills{display:flex;flex-wrap:wrap;gap:8px;margin-top:4vh}
+.spill{font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 13px;color:var(--body);font-weight:500;box-shadow:var(--sh)}
+.spill em{font-style:normal;color:var(--dim);font-size:10.5px}
+
+/* AB arch */
+.arch{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,2.6vw,34px);margin-top:4vh;box-shadow:var(--sh);position:relative;overflow:hidden}
+.arch-label{font-family:var(--font);font-weight:700;letter-spacing:.08em;font-size:10.5px;text-transform:uppercase;color:var(--rd);margin-bottom:5px}
+.arch-title{font-family:var(--font);font-size:clamp(15px,1.3vw,18px);font-weight:700;color:var(--head);margin-bottom:24px}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+.arch-node{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:82px}
+.arch-node .ico{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.arch-node .lbl{font-size:10.5px;color:var(--body);text-align:center;font-weight:600;line-height:1.3}
+.arch-node .lbl strong{color:var(--head)}
+.arch-arr{display:flex;flex-direction:column;align-items:center;padding:0 7px}
+.arch-arr .al{height:2px;width:30px;border-radius:2px}
+.arch-arr .at{font-size:9px;color:var(--dim);margin-top:3px;white-space:nowrap}
+.arch-agents{display:flex;flex-direction:column;gap:7px;min-width:190px}
+.arch-agent{display:flex;align-items:center;gap:9px;border-radius:10px;padding:8px 11px;font-size:12px;font-weight:600;color:var(--head)}
+.arch-agent.g{background:rgba(0,138,62,.06);border:1px solid rgba(0,138,62,.22)}
+.arch-agent.r{background:rgba(229,72,77,.05);border:1px solid rgba(229,72,77,.22)}
+.arch-agent.b{background:rgba(0,150,250,.06);border:1px solid rgba(0,150,250,.22)}
+.arch-agent.go{background:rgba(227,154,0,.06);border:1px solid rgba(227,154,0,.24)}
+.arch-agent.p{background:rgba(123,97,255,.06);border:1px solid rgba(123,97,255,.22)}
+.ab-badge{margin-left:auto;font-size:8.5px;font-weight:800;letter-spacing:.04em;padding:2px 7px;border-radius:6px;background:#fff;border:1px solid var(--line);color:var(--dim)}
+.arch-pills{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:22px}
+.arch-pill{font-size:12px;color:var(--body);line-height:1.5;background:var(--mint);border:1px solid var(--wash);border-radius:11px;padding:12px 14px}
+.arch-pill b{color:var(--rd-dk);font-weight:700}
+@media(max-width:720px){.arch-flow{flex-direction:column;gap:6px}.arch-arr{transform:rotate(90deg);padding:4px 0}.arch-agents{min-width:220px}}
+
+/* copilot card */
+.copilot{background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--sh-lg);border:1px solid var(--line);max-width:360px;margin:0 auto}
+.copilot .ch{background:linear-gradient(90deg,var(--rd),var(--rd-lt));color:#fff;padding:11px 14px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px}
+.copilot .cb{padding:14px 16px;font-size:11.5px;color:#31405c;line-height:1.6}
+.copilot .lb{font-size:9px;font-weight:800;letter-spacing:.08em;color:#8a95ab;text-transform:uppercase;margin:10px 0 4px}
+.copilot .lb:first-child{margin-top:0}
+.copilot .chips{display:flex;gap:5px;flex-wrap:wrap}
+.copilot .chip{font-size:9.5px;font-weight:600;padding:2px 8px;border-radius:99px}
+.copilot .chip.r{background:#FFE8E8;color:#B23636}.copilot .chip.y{background:#FFF3D0;color:#8A6100}
+.copilot .sugg{color:var(--rd-dk);font-style:italic;background:var(--mint);border-radius:9px;padding:9px 11px;border:1px solid var(--wash)}
+.copilot .cf{border-top:1px solid #eef1f5;padding:9px 14px;display:flex;gap:6px;flex-wrap:wrap}
+.copilot .cf span{font-size:9.5px;border:1px solid #dde3ec;border-radius:99px;padding:4px 9px;color:#5a6a86}
+
+/* ---------- use-case grid ---------- */
+.uc-cat{margin-top:4vh}
+.uc-cat h3{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.uc-cat h3 .ico{width:34px;height:34px;border-radius:10px;background:rgba(0,138,62,.10);display:flex;align-items:center;justify-content:center;font-size:17px}
+.uc-cat.b h3 .ico{background:rgba(0,150,250,.10)}.uc-cat.go h3 .ico{background:rgba(227,154,0,.12)}.uc-cat.p h3 .ico{background:rgba(123,97,255,.12)}
+.uc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.uc{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px 18px;box-shadow:var(--sh);transition:.24s}
+.uc:hover{border-color:var(--rd-lt);transform:translateY(-2px);box-shadow:var(--sh-lg)}
+.uc .ut{font-family:var(--font);font-size:14px;font-weight:700;color:var(--head);display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.uc .ut .e{font-size:16px}
+.uc p{font-size:12px;color:var(--body);line-height:1.5}
+.uc .prod{font-family:var(--mono);font-size:9.5px;color:var(--rd);margin-top:9px;letter-spacing:.03em}
+
+/* ---------- gains summary ---------- */
+.gains{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:5vh}
+.gain-c{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 22px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.gain-c::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rd)}
+.gain-c.go::before{background:var(--gold)}.gain-c.b::before{background:var(--blip)}.gain-c.lt::before{background:var(--rd-lt)}
+.gain-c .gn{font-family:var(--font);font-size:clamp(26px,3vw,40px);font-weight:800;color:var(--ink);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.gain-c .gl{font-size:13px;color:var(--body);line-height:1.5;margin-top:10px}
+.gain-c .gl b{color:var(--head);font-weight:600}
+
+.platform{background:linear-gradient(155deg,var(--rd-dk),var(--rd));border-radius:24px;padding:clamp(30px,4vw,52px);margin-top:5vh;color:#fff;position:relative;overflow:hidden;box-shadow:var(--sh-lg)}
+.platform::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%)}
+.platform h2{color:#fff;position:relative}
+.platform .lead{color:rgba(255,255,255,.9);max-width:70ch;position:relative}
+.platform .lead b{color:#fff}
+.plat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:30px;position:relative}
+.plat-c{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:18px}
+.plat-c .pn{font-family:var(--font);font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.plat-c p{font-size:12px;color:rgba(255,255,255,.82);line-height:1.5}
+
+.cta{text-align:center;margin-top:6vh}
+.cta h2{max-width:20ch;margin:0 auto}
+.cta .btn{display:inline-flex;align-items:center;gap:9px;margin-top:26px;background:var(--rd);color:#fff;font-family:var(--font);font-weight:700;font-size:15px;padding:15px 30px;border-radius:14px;box-shadow:0 12px 30px rgba(0,138,62,.28);transition:.24s}
+.cta .btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(0,138,62,.34)}
+
+footer{padding:40px max(22px,4vw);text-align:center;font-size:12px;color:var(--dim);border-top:1px solid var(--line);line-height:1.7}
+footer b{color:var(--rd-dk)}
+
+/* ---------- jornada interativa ---------- */
+.jor-grid{display:grid;grid-template-columns:322px 1fr;gap:44px;align-items:center;margin-top:5vh}
+@media(max-width:860px){.jor-grid{grid-template-columns:1fr;gap:32px;justify-items:center}}
+.jor-side{max-width:440px;width:100%}
+.jhint{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--rd-dk);background:rgba(0,138,62,.08);border:1px solid rgba(0,138,62,.24);border-radius:999px;padding:7px 14px;margin-bottom:18px}
+.jsteps{display:flex;flex-direction:column;gap:10px}
+.jstep{display:flex;gap:13px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);background:var(--card);border-radius:13px;box-shadow:var(--sh);transition:.3s;opacity:.5}
+.jstep.on{opacity:1;border-color:var(--rd);box-shadow:0 0 0 3px rgba(0,138,62,.09),var(--sh)}
+.jstep.done{opacity:1}
+.jstep .jnum{width:26px;height:26px;border-radius:50%;background:var(--wash);color:var(--rd-dk);display:flex;align-items:center;justify-content:center;font-family:var(--font);font-weight:800;font-size:12px;flex:0 0 auto;transition:.3s}
+.jstep.on .jnum{background:var(--rd);color:#fff}
+.jstep.done .jnum{background:var(--rd-lt);color:#fff}
+.jstep .jt{font-family:var(--font);font-size:13.5px;font-weight:700;color:var(--head)}
+.jstep .jp{font-size:11px;color:var(--dim);margin-top:2px}
+.jstep .jprod{font-family:var(--mono);font-size:9.5px;color:var(--rd);margin-top:4px;letter-spacing:.02em}
+.wa-act{background:var(--rd);color:#fff;font-size:12px;font-weight:700;text-align:center;padding:11px;border-radius:10px;cursor:pointer;box-shadow:0 4px 12px rgba(0,138,62,.22);align-self:stretch;transition:.16s;user-select:none}
+.wa-act:hover{filter:brightness(1.06)}.wa-act:active{transform:scale(.98)}
+.wa-act.ghost{background:#fff;color:var(--rd);border:1.5px solid var(--rd);box-shadow:none}
+.wa-flow .fld{border:1px solid #dfe6e1;border-radius:8px;padding:9px 11px;font-size:10.5px;color:#98a29b;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.16s}
+.wa-flow .fld.filled{border-color:var(--rd);color:#0a1a12;background:rgba(0,138,62,.05);font-weight:600}
+.wa-flow .fld .fck{width:16px;height:16px;border-radius:50%;border:2px solid #cfd8d2;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:800}
+.wa-flow .fld.filled .fck{border-color:var(--rd);background:var(--rd)}
+.wa-flow .fopt{cursor:pointer;transition:.16s}
+.typ{display:inline-block;width:6px;height:6px;border-radius:50%;background:#9aa6ac;margin-right:4px;animation:blink 1.2s infinite}
+.typ:nth-child(2){animation-delay:.2s}.typ:nth-child(3){animation-delay:.4s;margin-right:0}
+@keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+/* ---------- X (rede social) card ---------- */
+.xcard{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-lg);max-width:460px;margin:0 auto;overflow:hidden;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+.xtop{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid #eff3f4}
+.xtop .xdotwrap{display:flex;gap:6px}
+.xtop .xdotwrap i{width:9px;height:9px;border-radius:50%;background:#e1e4e8;display:block}
+.xtop .xurl{margin:0 auto;font-size:12px;color:#536471;font-weight:500}
+.xpost{padding:16px 18px 6px}
+.xhead{display:flex;gap:11px}
+.xav{width:46px;height:46px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px}
+.xav.marcelo{background:linear-gradient(135deg,#6C7A93,#3E4A61)}
+.xav.rd{background:linear-gradient(135deg,var(--rd),var(--rd-dk))}
+.xnamewrap{min-width:0}
+.xname-row{display:flex;align-items:center;gap:4px;font-size:15px;font-weight:800;color:#0f1419;flex-wrap:wrap}
+.xcheck{width:16px;height:16px;flex:0 0 auto}
+.xhandle{color:#536471;font-size:14.5px;font-weight:400}
+.xmeta{color:#536471;font-size:14.5px}
+.xmore{margin-left:auto;color:#536471;font-size:17px;padding:0 4px}
+.xbody-txt{margin-top:8px;font-size:15.5px;line-height:1.42;color:#0f1419}
+.xtime{font-size:13.5px;color:#536471;margin-top:12px}
+.xstats{display:flex;gap:26px;padding:12px 18px 14px;margin-top:6px;border-top:1px solid #eff3f4;color:#536471;font-size:13px}
+.xstats span{display:flex;align-items:center;gap:6px}
+.xstats svg{width:16px;height:16px}
+.xreply-wrap{position:relative;padding:0 18px 18px;border-top:1px solid #eff3f4}
+.xreply-line{position:absolute;left:41px;top:0;width:2px;height:20px;background:#eff3f4}
+.xreply{display:flex;gap:11px;padding-top:16px}
+.xreply .xbody-txt{margin-top:6px}
+.xlinkcard{margin-top:11px;border:1px solid #cfd9de;border-radius:14px;overflow:hidden;display:flex;align-items:center;gap:11px;padding:10px 12px;background:#f7f9f9;cursor:pointer}
+.xlinkcard .xlk-ic{width:36px;height:36px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.xlinkcard .xlk-ic svg{width:19px;height:19px;fill:#fff}
+.xlinkcard .xlk-t{font-size:13.5px;font-weight:700;color:#0f1419;line-height:1.3}
+.xlinkcard .xlk-d{font-size:12px;color:#536471;margin-top:1px}
+.xcap{text-align:center;font-size:11.5px;color:var(--faint);margin-top:14px;font-weight:500}
+
+/* ---------- Blip Brain module ---------- */
+.brain{max-width:100%;margin:0 auto;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--sh-lg)}
+.brain-top{height:46px;background:#fff;border-bottom:1px solid #eef0f3;display:flex;align-items:center;gap:12px;padding:0 16px}
+.brain-top .wd{display:flex;gap:6px}
+.brain-top .wd i{width:10px;height:10px;border-radius:50%;display:block}
+.brain-top .wd i:nth-child(1){background:#ff5f57}
+.brain-top .wd i:nth-child(2){background:#febc2e}
+.brain-top .wd i:nth-child(3){background:#28c840}
+.brain-top .bblg{width:17px;height:17px;border-radius:5px 5px 5px 1px;background:linear-gradient(135deg,var(--rd),var(--rd-lt));flex:0 0 auto}
+.brain-top .bc{font-size:12.5px;color:#9195a6;font-weight:500}
+.brain-top .bpill{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--rd-dk);background:linear-gradient(90deg,rgba(0,138,62,.10),rgba(57,179,106,.10));border:1px solid rgba(0,138,62,.25);padding:5px 13px;border-radius:20px}
+.brain-top .bav{width:23px;height:23px;border-radius:50%;background:linear-gradient(135deg,var(--rd),var(--gold));flex:0 0 auto}
+.brain-body{display:flex;min-height:400px;background:#fff;color:#15111f}
+.brain-rail{width:52px;border-right:1px solid #f0f0f4;display:flex;flex-direction:column;align-items:center;gap:20px;padding:18px 0;color:#b7bac6;flex:0 0 auto}
+.brain-rail svg{width:20px;height:20px}
+.brain-rail .r0{color:var(--rd)}
+.brain-main{flex:1;padding:28px 32px;position:relative;display:flex;flex-direction:column;min-width:0}
+.brain-home{display:flex;flex-direction:column;flex:1;transition:opacity .4s}
+.brain-greet{text-align:center;margin:6px 0 22px}
+.brain-greet .spk{font-size:22px;color:var(--rd)}
+.brain-greet h4{font-family:var(--font);font-size:24px;font-weight:800;color:#15111f;margin-top:6px}
+.brain-greet .bgrad{font-family:var(--font);font-size:24px;font-weight:800;background:linear-gradient(90deg,var(--rd),var(--rd-lt));-webkit-background-clip:text;background-clip:text;color:transparent}
+.brain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bcard{background:#f8fbf9;border:1px solid #eef0f3;border-radius:13px;padding:16px;cursor:pointer;transition:border-color .3s}
+.bcard:hover{border-color:var(--rd-lt)}
+.bcard .bi{font-size:20px;margin-bottom:7px}
+.bcard .bt{font-family:var(--font);font-size:13px;font-weight:700;color:#15111f;margin-bottom:4px}
+.bcard .bp{font-size:11px;color:#9aa0b0;line-height:1.4}
+.brain-input{margin-top:auto;border:1.6px solid #d9dbe6;border-radius:14px;padding:14px 16px;transition:border-color .3s;background:#fff}
+.brain-input.live{border-color:var(--rd);box-shadow:0 0 0 3px rgba(0,138,62,.12)}
+.brain-input .btxt{font-size:14px;color:#15111f;min-height:20px}
+.brain-input .btxt .bph{color:#9aa0b0}
+.brain-input .bcur{display:inline-block;width:1.5px;height:15px;background:var(--rd);margin-left:1px;vertical-align:-2px;animation:bcur 1s steps(1) infinite}
+@keyframes bcur{0%,50%{opacity:1}51%,100%{opacity:0}}
+.bchips{display:flex;gap:6px;margin-top:11px;align-items:center}
+.bchip{font-size:11px;color:#9aa0b0;background:#f4f4fa;border:1px solid #e8e8f0;border-radius:8px;padding:4px 10px;cursor:pointer}
+.bchip.on{color:var(--rd-dk);border-color:rgba(0,138,62,.3);background:rgba(0,138,62,.06)}
+.bsnd{margin-left:auto;width:28px;height:28px;border-radius:50%;background:#15111f;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
+.brain-conv{display:none;flex-direction:column;gap:14px;flex:1;overflow-y:auto;padding-top:8px}
+.brain-conv.show{display:flex}
+.brain-conv.show~.brain-home{display:none}
+.bubu{align-self:flex-end;background:#f4f4fa;border-radius:16px 16px 4px 16px;padding:12px 16px;font-size:14px;line-height:1.5;max-width:80%;opacity:0;transform:translateY(8px);transition:all .35s}
+.bubu.show{opacity:1;transform:none}
+.bthink{font-size:13px;color:#9aa0b0;padding:8px 0;opacity:0;transition:opacity .3s}
+.bthink.show{opacity:1}
+.bthink .bsp{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,138,62,.3);border-top-color:var(--rd);border-radius:50%;animation:bspin .7s linear infinite;vertical-align:-2px}
+@keyframes bspin{to{transform:rotate(360deg)}}
+.binsight{background:linear-gradient(135deg,rgba(0,138,62,.07),rgba(57,179,106,.07));border:1px solid rgba(0,138,62,.20);border-radius:14px;padding:14px 18px;font-size:14px;line-height:1.6;color:#15111f;opacity:0;transform:translateY(8px);transition:all .4s}
+.binsight.show{opacity:1;transform:none}
+.binsight b{color:var(--rd-dk)}
+.bcamp{background:#fff;border:1px solid #eef0f3;border-radius:14px;overflow:hidden;opacity:0;transform:translateY(8px);transition:all .4s}
+.bcamp.show{opacity:1;transform:none}
+.bch{background:linear-gradient(90deg,var(--rd),var(--rd-lt));color:#fff;font-size:13px;font-weight:700;padding:10px 18px}
+.bcg{padding:14px 18px}
+.bcrow{font-size:13px;color:#666;line-height:1.8}
+.bcrow b{color:#15111f}
+.bcf{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid #eef0f3;gap:12px;flex-wrap:wrap}
+.bcbtn{background:#15111f;color:#fff;font-size:12px;font-weight:700;padding:8px 18px;border-radius:8px;cursor:pointer}
+.bcproj{font-size:11px;color:var(--rd-dk);font-weight:700}
+@media(max-width:760px){.brain-cards{grid-template-columns:1fr}.brain-body{flex-direction:column;min-height:0}.brain-rail{flex-direction:row;width:100%;border-right:0;border-bottom:1px solid #f0f0f4;padding:8px 12px}.bchips{flex-wrap:wrap}}
+
+.vf{width:13px;height:13px}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="topbar" id="topbar">
+  <div class="lft">
+    <span class="brand"><span class="dotmk"></span>blip</span>
+    <span class="x">×</span>
+    <span class="rd-lg">RD Saúde</span>
+  </div>
+  <div class="r">Proposta executiva · Contato Inteligente</div>
+</div>
+<div class="dots" id="dots"></div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="capa" data-nav="Abertura">
+  <div class="heroart" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+  <div class="wrap">
+    <div class="cobrand">
+      <span class="brand"><span class="dotmk"></span>blip</span>
+      <span class="x">×</span>
+      <span class="rd-lg">RD Saúde</span>
+    </div>
+    <h1 id="heroTitle">O futuro do relacionamento na RD Saúde.</h1>
+    <p class="sub">Uma proposta para transformar cada conversa — no WhatsApp, no app e no site — em <b>cuidado, conveniência e venda</b>. Da escuta social ao pagamento dentro do chat, tudo orquestrado por agentes de IA em <b>uma única plataforma</b>.</p>
+    <div class="meta">
+      <span class="pill g">Omnichannel</span>
+      <span class="pill go">Redução de custo operacional</span>
+      <span class="pill b">Mais vendas na jornada de saúde</span>
+    </div>
+  </div>
+  <div class="scrollcue"><span>Role para começar</span><span class="m"></span></div>
+</section>
+
+<!-- ============ ÍNDICE ============ -->
+<section id="indice" data-nav="O percurso">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">O que esta proposta cobre</div>
+      <h2 style="max-width:22ch">Do desafio ao <span class="g">ecossistema completo.</span></h2>
+      <p class="lead">Cinco blocos, na ordem em que o cliente decide, compra e volta.</p>
+    </div>
+    <div class="chapters reveal">
+      <a class="chp" href="#desafio"><span class="cn">01</span><h4>O desafio</h4><p>Volume crescente, hiperpersonalização na saúde e a fragmentação dos canais de atendimento.</p></a>
+      <a class="chp" href="#blip"><span class="cn">02</span><h4>Sobre a Blip</h4><p>A plataforma por onde as marcas conversam no Brasil — e o canal onde a decisão já acontece.</p></a>
+      <a class="chp" href="#ciclo"><span class="cn">03</span><h4>Ciclo do contato inteligente</h4><p>Oito momentos, uma plataforma de gestão: escutar, atrair, entender, converter e apoiar.</p></a>
+      <a class="chp" href="#casos"><span class="cn">04</span><h4>Casos de uso</h4><p>Vendas, pós-venda e serviços rodando sobre todo o ecossistema Blip.</p></a>
+      <a class="chp" href="#ganhos"><span class="cn">05</span><h4>Resumo dos ganhos</h4><p>A jornada completa em mockups e a gestão em uma plataforma só.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESAFIO ============ -->
+<section id="desafio" data-nav="O desafio">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">O contexto da RD Saúde</div>
+      <h2 style="max-width:24ch">A demanda cresce. A expectativa de <span class="g">cuidado personalizado</span> cresce mais.</h2>
+      <p class="lead">Como a maior rede de farmácias do Brasil, a RD Saúde recebe um volume gigante de contatos todos os dias — dúvidas sobre medicamentos, renovação de receitas, fidelidade, entregas. Escalar isso mantendo a <b>experiência de saúde e bem-estar</b> exige mais do que mais atendentes: exige inteligência conversacional na jornada inteira.</p>
+    </div>
+
+    <div class="exec reveal">
+      <div class="ex bad">
+        <div class="exh">Onde dói hoje</div>
+        <div class="pains" style="margin-top:2px">
+          <div class="pain"><span class="pi">📈</span><span class="px"><b>Volume crescente</b> de demandas pressiona filas em loja e no digital, elevando o custo por contato.</span></div>
+          <div class="pain"><span class="pi">🧩</span><span class="px"><b>Canais fragmentados</b> — WhatsApp, app, site, redes sociais e SAC operam em silos, sem contexto compartilhado.</span></div>
+          <div class="pain"><span class="pi">💊</span><span class="px"><b>Saúde pede hiperpersonalização</b>: medicamento contínuo, receita, restrição e histórico exigem resposta certa, na hora certa.</span></div>
+        </div>
+      </div>
+      <div class="ex gain">
+        <div class="exh">O que a proposta entrega</div>
+        <div class="fixes" style="margin-top:2px">
+          <div class="fix"><span class="pi">🤖</span><span class="px"><b>Agentes de IA</b> resolvem a maior parte dos contatos sem fila e sem menu, 24h por dia.</span></div>
+          <div class="fix"><span class="pi">🔗</span><span class="px"><b>Omnichannel real</b>: uma plataforma orquestra todos os canais com contexto e histórico unificados.</span></div>
+          <div class="fix"><span class="pi">💰</span><span class="px"><b>Menos custo, mais venda</b>: a mesma conversa que tira dúvida também recomenda, converte e fideliza.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mres reveal"><b>A pergunta deixa de ser "como atender mais barato".</b> Passa a ser "como transformar cada conversa em cuidado e em receita" — sem perder a escala nem a personalização que saúde exige.</div>
+  </div>
+</section>
+
+<!-- ============ SOBRE A BLIP · CAP 01 ============ -->
+<section id="blip" data-nav="Sobre a Blip">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow blip">Capítulo 01 · A plataforma</div>
+      <h2 style="max-width:26ch">A plataforma por onde <span class="g">as marcas conversam no Brasil.</span></h2>
+      <p class="lead">Fundada em 1999, a Blip opera conversas entre marcas e consumidores nos canais oficiais de mensagem. É <b>Business Solution Provider (BSP) oficial da Meta</b> e sustenta operações de atendimento, marketing e venda em escala — do primeiro "oi" ao pagamento.</p>
+    </div>
+    <div class="kpis reveal">
+      <div class="kpi"><div class="n"><span class="count" data-to="4000" data-suf="+">0</span></div><div class="d">empresas atendidas na plataforma</div></div>
+      <div class="kpi lt"><div class="n"><span class="count" data-to="1" data-suf=" bi" data-dec="0">0</span></div><div class="d">de interações mensais processadas</div></div>
+      <div class="kpi go"><div class="n"><span class="count" data-to="99.9" data-suf="%" data-dec="1">0</span></div><div class="d">de disponibilidade da plataforma</div></div>
+      <div class="kpi b"><div class="n">BSP</div><div class="d">Provedor de soluções oficial da Meta</div><div class="v">contrato direto</div></div>
+    </div>
+    <div class="bb-tags reveal">
+      <span class="bbt g">Maior plataforma agêntica do país</span>
+      <span class="bbt b">Business Solution Provider oficial da Meta</span>
+      <span class="bbt p">Multicloud · Azure e GCP</span>
+      <span class="bbt go">ISO 27001 · LGPD</span>
+    </div>
+  </div>
+</section>
+
+<!-- CAP 01 · o canal -->
+<section id="canal" data-nav="O canal no Brasil">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow blip">Capítulo 01 · O canal</div>
+      <h2 style="max-width:26ch">O canal onde a decisão de compra <span class="g">já acontece.</span></h2>
+      <p class="lead">Não é aposta de tendência. É onde o consumidor brasileiro já está, todos os dias — inclusive para falar com empresas sobre saúde, medicamentos e farmácia.</p>
+    </div>
+    <div class="kpis reveal">
+      <div class="kpi"><div class="n"><span class="count" data-to="147" data-suf=" mi">0</span></div><div class="d">de usuários no Brasil</div><div class="v">2º maior mercado do mundo</div></div>
+      <div class="kpi lt"><div class="n"><span class="count" data-to="98.3" data-dec="1" data-suf="%">0</span></div><div class="d">dos smartphones brasileiros têm o app instalado</div></div>
+      <div class="kpi go"><div class="n"><span class="count" data-to="97" data-suf="%">0</span></div><div class="d">abrem o app todos os dias</div><div class="v">não precisa trazer de volta</div></div>
+      <div class="kpi b"><div class="n"><span class="count" data-to="83" data-suf="%">0</span></div><div class="d">já usaram o WhatsApp para falar com empresas</div></div>
+    </div>
+    <p class="mnote reveal">Fontes: Opinion Box, Pesquisa WhatsApp no Brasil (2025); Panorama Mobile Time / Opinion Box (2026).</p>
+  </div>
+</section>
+
+<!-- ============ CICLO · abertura + ring ============ -->
+<section id="ciclo" data-nav="Ciclo do contato">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Ciclo do contato inteligente</div>
+      <h2 style="max-width:22ch">8 momentos em uma única <span class="g">plataforma de gestão.</span></h2>
+      <p class="lead">Cada ponto do ciclo abaixo é um produto do ecossistema Blip trabalhando junto — da escuta social à fidelização. Passe pelos nós para ver o que cada momento entrega na operação da RD Saúde.</p>
+    </div>
+    <div class="cyclegrid">
+      <div class="ringwrap reveal" id="ringWrap">
+        <svg class="ringsvg" viewBox="0 0 500 500" aria-hidden="true">
+          <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#008A3E"/><stop offset=".5" stop-color="#39B36A"/><stop offset="1" stop-color="#E39A00"/>
+          </linearGradient></defs>
+          <circle class="ringbase" cx="250" cy="250" r="190"/>
+          <g class="ringspin"><circle class="ringdash" cx="250" cy="250" r="190"/></g>
+          <g class="cometspin"><circle class="ringcomet" cx="250" cy="250" r="190"/></g>
+        </svg>
+        <div class="hub"><span class="hubdash"></span><span class="huborbit"></span><span class="bl">blip</span><span class="st">Studio</span><span class="sm">RD Saúde</span></div>
+        <div id="ringNodes"></div>
+      </div>
+      <div class="cyclepanel reveal" id="cyclePanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEEP DIVE 01 · ESCUTAR ============ -->
+<section id="escutar" data-nav="01 · Escutar">
+  <div class="wrap">
+    <div class="deep reveal">
+      <div class="deep-txt">
+        <div class="stepnum"><span class="cir">01</span> Escutar <span class="prod">· Stilingue by Blip</span></div>
+        <h3>A RD entra na conversa antes mesmo do cliente chamar.</h3>
+        <p class="desc">O <b>Stilingue</b> é a plataforma de social listening da Blip: escuta menções sobre saúde, medicamentos e farmácia em redes sociais, Reclame Aqui e sites — e <b>responde tudo de um lugar só</b>, por praça e sentimento. A escuta vira ação: audiência qualificada, alerta de crise e oportunidade de venda.</p>
+        <div class="exstack">
+          <div class="ex">
+            <div class="exh">Como funciona na operação da RD</div>
+            <ol class="steps">
+              <li><b>Escuta contínua</b> em X/Twitter, Instagram, Reclame Aqui e marketplaces.</li>
+              <li><b>Classificação automática</b> por tema, sentimento e região.</li>
+              <li>Do mesmo painel, o time <b>responde o comentário e puxa a pessoa para o WhatsApp.</b></li>
+            </ol>
+          </div>
+          <div class="ex gain">
+            <div class="exh">Ganhos reais</div>
+            <p>Menção pública vira <b>lead qualificado</b>, crise é contida na origem e a marca aparece cuidando — no momento exato da necessidade.</p>
+            <div class="gchips"><span>Antecipação de crise</span><span class="go">Novos leads</span><span>Uma central para tudo</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="deep-vis">
+        <div class="xcard">
+          <div class="xtop"><span class="xdotwrap"><i></i><i></i><i></i></span><span class="xurl">x.com</span></div>
+          <div class="xpost">
+            <div class="xhead">
+              <div class="xav marcelo">M</div>
+              <div class="xnamewrap">
+                <div class="xname-row">Marcelo Andrade <span class="xmeta">·</span> <span class="xhandle">@marcelo_andrd</span></div>
+              </div>
+              <span class="xmore">···</span>
+            </div>
+            <div class="xbody-txt">alguém sabe onde tem Mounjaro disponível? já fui em 3 farmácias e não encontrei 😩</div>
+            <div class="xtime">14:07 · 9 mai 2026</div>
+            <div class="xstats">
+              <span><svg viewBox="0 0 24 24" fill="#536471"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01Z"/></svg> 128</span>
+              <span><svg viewBox="0 0 24 24" fill="#536471"><path d="M4.5 3.88l4.35 4.35-1.3 1.3L5.4 7.38V16c0 1.1.9 2 2 2H13v2H7.4a4 4 0 0 1-4-4V7.38L1.25 9.53l-1.3-1.3L4.5 3.88Zm10.6 3.75H9.6v-2h5.5a4 4 0 0 1 4 4V16.6l2.15-2.15 1.3 1.3-4.35 4.35-4.35-4.35 1.3-1.3 2.15 2.15V9.63c0-1.1-.9-2-2-2Z"/></svg> 34</span>
+              <span><svg viewBox="0 0 24 24" fill="#536471"><path d="M12.615 15h-1.23l-5.57-3.86v-.28l5.57-3.86h1.23l5.57 3.86v.28l-5.57 3.86Z"/></svg> 890</span>
+            </div>
+          </div>
+          <div class="xreply-wrap">
+            <span class="xreply-line"></span>
+            <div class="xreply">
+              <div class="xav rd">RD</div>
+              <div class="xnamewrap">
+                <div class="xname-row">RD Saúde <svg class="xcheck" viewBox="0 0 22 22"><path fill="#1D9BF0" d="M20.396 11c-.018-.646-.215-1.275-.57-1.82a3.9 3.9 0 0 0-1.556-1.379c.34-.63.484-1.351.415-2.056a3.87 3.87 0 0 0-1.106-2.07 3.9 3.9 0 0 0-2.07-1.106 3.9 3.9 0 0 0-2.056.415 3.9 3.9 0 0 0-1.379-1.556A3.94 3.94 0 0 0 11 1c-.646.018-1.275.215-1.82.57a3.9 3.9 0 0 0-1.379 1.556 3.9 3.9 0 0 0-2.056-.415 3.87 3.87 0 0 0-2.07 1.106 3.9 3.9 0 0 0-1.106 2.07c-.069.705.075 1.426.415 2.056A3.9 3.9 0 0 0 1.174 9.18 3.94 3.94 0 0 0 .604 11c.018.646.215 1.275.57 1.82a3.9 3.9 0 0 0 1.556 1.379c-.34.63-.484 1.351-.415 2.056a3.87 3.87 0 0 0 1.106 2.07 3.9 3.9 0 0 0 2.07 1.106c.705.069 1.426-.075 2.056-.415a3.9 3.9 0 0 0 1.379 1.556c.545.355 1.174.552 1.82.57.646-.018 1.275-.215 1.82-.57a3.9 3.9 0 0 0 1.379-1.556c.63.34 1.351.484 2.056.415a3.87 3.87 0 0 0 2.07-1.106 3.9 3.9 0 0 0 1.106-2.07c.069-.705-.075-1.426-.415-2.056a3.9 3.9 0 0 0 1.556-1.379c.355-.545.552-1.174.57-1.82Zm-11.11 3.52-3.4-3.377 1.294-1.302 2.106 2.09 4.6-4.615 1.294 1.302Z"/></svg> <span class="xmeta">·</span> <span class="xhandle">@rdsaude</span></div>
+                <div class="xbody-txt">Oi, Marcelo! Aqui a gente sabe sim onde tem 💚 Temos Mounjaro disponível em lojas próximas de você. Entra no nosso WhatsApp que a gente confirma o estoque e já separa pra retirada — sem precisar rodar mais farmácia:</div>
+                <div class="xlinkcard">
+                  <span class="xlk-ic"><svg viewBox="0 0 24 24"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.34 4.95L2 22l5.23-1.37a9.9 9.9 0 0 0 4.81 1.24c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z"/></svg></span>
+                  <div><div class="xlk-t">Fale com a RD Saúde no WhatsApp</div><div class="xlk-d">wa.me/rdsaude · resposta em poucos minutos</div></div>
+                </div>
+                <div class="xtime">14:09 · resposta</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="xcap">Simulação de post e resposta no X — o Stilingue detecta, o time responde e conduz para o WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEEP DIVE 02 · ATRAIR ============ -->
+<section id="atrair" data-nav="02 · Atrair">
+  <div class="wrap">
+    <div class="deep rev reveal">
+      <div class="deep-txt">
+        <div class="stepnum"><span class="cir">02</span> Atrair <span class="prod">· Blip Marketing</span></div>
+        <h3>Do anúncio à conversa — e da conversa à venda.</h3>
+        <p class="desc">Com o <b>Blip Marketing</b>, a RD centraliza os anúncios de Meta, Instagram, Google e TikTok em <b>uma única plataforma</b>, com envio de sinais de conversão para otimizar a mídia por venda (não por clique). E o cliente que toca no anúncio cai numa conversa no WhatsApp com <b>janela de 72h isenta de cobrança</b>.</p>
+        <div class="exstack">
+          <div class="ex">
+            <div class="exh">Como funciona na operação da RD</div>
+            <ol class="steps">
+              <li>Campanha de <b>conscientização sobre as canetas emagrecedoras</b> roda no Instagram e no Google.</li>
+              <li>O clique abre o WhatsApp com <b>72h sem custo de mensageria</b>.</li>
+              <li>O agente educa, tira dúvidas com responsabilidade e conduz para avaliação e compra.</li>
+            </ol>
+          </div>
+          <div class="ex gain">
+            <div class="exh">Ganhos reais</div>
+            <p>Aquisição pelo canal de menor custo marginal, mídia medida por resultado e <b>venda fechada dentro da janela gratuita</b>.</p>
+            <div class="gchips"><span class="go">72h sem custo</span><span>Anúncios centralizados</span><span class="b">Sinais de conversão</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="deep-vis">
+        <div style="max-width:320px;margin:0 auto">
+          <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--sh-lg);border:1px solid var(--line)">
+            <div style="padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #eee">
+              <span style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--rd),var(--rd-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:9px;flex:0 0 auto">RD</span>
+              <span style="font-size:11px;font-weight:700;color:#111;line-height:1.1">rdsaude<br><em style="font-weight:400;font-size:9px;color:#888;font-style:normal">Patrocinado</em></span>
+            </div>
+            <div style="background:linear-gradient(150deg,var(--rd-dk),var(--rd));padding:30px 20px;text-align:center;color:#fff">
+              <div style="font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#CFF3DC;margin-bottom:8px">Saúde com informação</div>
+              <div style="font-size:18px;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px">Canetas emagrecedoras: entenda antes de decidir</div>
+              <div style="font-size:10px;color:#DDF3E5;line-height:1.4">Fale com nossos especialistas no WhatsApp 💬</div>
+            </div>
+            <div style="background:var(--rd);color:#fff;font-size:12px;font-weight:700;padding:11px;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.34 4.95L2 22l5.23-1.37a9.9 9.9 0 0 0 4.81 1.24c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z"/></svg>
+              Enviar mensagem
+            </div>
+          </div>
+          <div style="text-align:center;margin:12px 0"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--rd)" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+          <div style="background:rgba(0,138,62,.08);border:1px solid rgba(0,138,62,.3);border-radius:12px;padding:11px 14px;text-align:center;font-size:11px;color:var(--rd-dk);font-weight:700;letter-spacing:.03em">✓ CONVERSA ABERTA · JANELA DE 72H SEM CUSTO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEEP DIVE 03 · ENTENDER (Studio + arquiteturas) ============ -->
+<section id="entender" data-nav="03 · Entender">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="stepnum"><span class="cir">03</span> Entender <span class="prod">· Blip Studio</span></div>
+      <h2 style="max-width:24ch;margin-top:6px">Um cérebro que <span class="g">orquestra especialistas.</span></h2>
+      <p class="lead">O <b>Blip Studio</b> é onde a RD cria e orquestra agentes de IA especialistas — em vender, tirar dúvidas, ler receita, cuidar da recorrência. Gestão simples, manutenção fácil (no-code / low-code / high-code) e a capacidade de <b>integrar agentes de terceiros</b> como um hub central.</p>
+    </div>
+
+    <div class="exec reveal" style="margin-top:4vh">
+      <div class="ex gain">
+        <div class="exh">Vantagens do Studio</div>
+        <div class="fixes" style="margin-top:2px">
+          <div class="fix"><span class="pi">🛠️</span><span class="px"><b>Gestão simples e manutenção fácil</b> — construir e evoluir jornadas sem depender de deploy.</span></div>
+          <div class="fix"><span class="pi">🔌</span><span class="px"><b>Integração via MCP</b> com Salesforce/CRM, estoque por loja, catálogo e ERP em tempo real.</span></div>
+          <div class="fix"><span class="pi">🕸️</span><span class="px"><b>Interoperabilidade A2A</b> — orquestra agentes próprios da RD e de terceiros no mesmo fluxo.</span></div>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="exh">O que o Studio entrega</div>
+        <div class="spills" style="margin-top:2px">
+          <span class="spill">🎛️ Orquestração</span>
+          <span class="spill">🧠 Contexto &amp; memória</span>
+          <span class="spill">📚 Base de conhecimento</span>
+          <span class="spill">🔌 Integrações <em>MCP</em></span>
+          <span class="spill">🧪 Testes A/B</span>
+          <span class="spill">📊 Logs &amp; relatórios</span>
+          <span class="spill">⚡ Baixa latência</span>
+          <span class="spill">📱 Multicanal nativo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arquitetura A -->
+    <div class="reveal" style="margin-top:6vh">
+      <div class="eyebrow dk">Arquitetura · visão geral</div>
+      <h3 style="max-width:700px;font-size:clamp(19px,2.4vw,26px)">No centro, o Blip Studio orquestra tudo.</h3>
+      <p class="lead" style="margin-top:10px">Os sistemas da RD entram de um lado. Os canais onde o cliente compra saem do outro. No meio, o Studio roteia por intenção e distribui para o agente certo.</p>
+      <div class="orch">
+        <div class="orch-col left">
+          <div class="col-label">Sistemas &amp; Dados</div>
+          <div class="orch-item"><span class="orch-dot d-b"></span>Salesforce · CRM</div>
+          <div class="orch-item"><span class="orch-dot d-go"></span>Estoque · por loja</div>
+          <div class="orch-item"><span class="orch-dot d-g"></span>Gateway de pagamento</div>
+          <div class="orch-item"><span class="orch-dot d-p"></span>Catálogo de produtos</div>
+          <div class="orch-item"><span class="orch-dot d-r"></span>Stix · fidelidade</div>
+        </div>
+        <div class="orch-center">
+          <div class="orch-hub"><div class="hub-ring"></div><div class="hub-ring2"></div><span class="hn">blip</span><span class="hs">Studio</span></div>
+        </div>
+        <div class="orch-col right">
+          <div class="col-label" style="text-align:right">Canais</div>
+          <div class="orch-item"><span class="orch-dot d-g"></span>WhatsApp</div>
+          <div class="orch-item"><span class="orch-dot d-b"></span>App RD Saúde</div>
+          <div class="orch-item"><span class="orch-dot d-go"></span>Site</div>
+          <div class="orch-item"><span class="orch-dot d-p"></span>Instagram</div>
+          <div class="orch-item"><span class="orch-dot d-r"></span>Desk · humano + Copilot</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arquitetura B (A/B) -->
+    <div class="arch reveal">
+      <div class="arch-label">Arquitetura de vendas</div>
+      <div class="arch-title">Orquestrador com teste A/B entre agentes de vendas</div>
+      <div class="arch-flow">
+        <div class="arch-node">
+          <div class="ico" style="background:#fff;border:1px solid var(--line)">👤</div>
+          <div class="lbl">Cliente<br><strong>no WhatsApp</strong></div>
+        </div>
+        <div class="arch-arr"><div class="al" style="background:linear-gradient(90deg,var(--faint),var(--blip))"></div><div class="at">mensagem</div></div>
+        <div class="arch-node">
+          <div class="ico" style="background:rgba(0,138,62,.12);border:1.5px solid rgba(0,138,62,.4)">🧠</div>
+          <div class="lbl"><strong style="color:var(--rd)">Orquestrador</strong><br>identifica intenção</div>
+        </div>
+        <div class="arch-arr"><div class="al" style="background:linear-gradient(90deg,var(--rd),var(--rd-lt))"></div><div class="at">roteia</div></div>
+        <div class="arch-agents">
+          <div class="arch-agent b">🛒 Agente de Vendas Blip <span class="ab-badge">A/B · A</span></div>
+          <div class="arch-agent r">🛒 Agente de Vendas RD <span class="ab-badge">A/B · B</span></div>
+          <div class="arch-agent g">🔄 Agente Recorrência</div>
+          <div class="arch-agent go">💊 Agente Receitas</div>
+          <div class="arch-agent p">🎧 Agente SAC</div>
+        </div>
+        <div class="arch-arr"><div class="al" style="background:linear-gradient(90deg,var(--rd-lt),var(--rd))"></div><div class="at">ou escalona</div></div>
+        <div class="arch-node">
+          <div class="ico" style="background:rgba(0,138,62,.07);border:1px solid rgba(0,138,62,.28)">🎧</div>
+          <div class="lbl">Humano<br><strong style="color:var(--rd)">+ Copilot</strong></div>
+        </div>
+      </div>
+      <div class="arch-pills">
+        <div class="arch-pill"><b>Teste A/B de vendas</b> — o orquestrador distribui tráfego entre o agente Blip e o agente próprio da RD, comparando conversão, ticket e NPS.</div>
+        <div class="arch-pill"><b>Estoque em tempo real</b> — o agente confirma disponibilidade por loja antes de responder ao cliente, sem alucinação.</div>
+        <div class="arch-pill"><b>Pagamento nativo</b> — Pix, cartão e Open Finance sem sair do WhatsApp via Blip Payments.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEEP DIVE 04 · CONVERTER ============ -->
+<section id="converter" data-nav="04 · Converter">
+  <div class="wrap">
+    <div class="deep reveal">
+      <div class="deep-txt">
+        <div class="stepnum"><span class="cir">04</span> Converter <span class="prod">· Blip Payments</span></div>
+        <h3>Checkout 100% dentro do WhatsApp.</h3>
+        <p class="desc">Com o <b>Blip Payments</b> e integração com os sistemas de pagamento, o cliente escolhe, confirma e paga <b>sem sair da conversa</b> — com <b>WhatsApp Flows</b> montando o carrinho e <b>Pix via Open Finance</b> finalizando em segundos. Cada redirecionamento a menos é um abandono a menos.</p>
+        <div class="exstack">
+          <div class="ex">
+            <div class="exh">Como funciona na operação da RD</div>
+            <ol class="steps">
+              <li>O agente monta o pedido e abre um <b>WhatsApp Flow</b> com opções de entrega e retirada.</li>
+              <li>O cliente paga por <b>Pix (Open Finance)</b>, cartão ou boleto, dentro do chat.</li>
+              <li>Recebe confirmação e comprovante na mesma conversa.</li>
+            </ol>
+          </div>
+          <div class="ex gain">
+            <div class="exh">Ganhos reais</div>
+            <p><b>Menos fricção, mais conversão.</b> Sem redirecionar para o site, o funil fecha onde a intenção nasceu.</p>
+            <div class="gchips"><span>Sem abandono de checkout</span><span class="b">Pix Open Finance</span><span class="go">+ conversão</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="deep-vis">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="wa-screen">
+            <div class="wa-header"><span class="wa-back">‹</span><div class="wa-avatar">RD</div><div><div class="wa-contact-name">RD Saúde <svg class="wa-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="wa-contact-status">online</div></div></div>
+            <div class="wa-body">
+              <div class="wa-date-chip">Hoje</div>
+              <div class="msg msg-in">🛒 <strong>1× Losartana 50mg · 30cp</strong> — R$ 12,49<div class="msg-time">10:14</div></div>
+              <div class="wa-flow">
+                <div class="fh">📋 Finalizar pedido</div>
+                <div class="fb">
+                  <div class="fopt sel"><span class="rad"></span>Retirar · loja Moema</div>
+                  <div class="frow"><span>Subtotal</span><b>R$ 12,49</b></div>
+                  <div class="fbtn">Ir para pagamento</div>
+                </div>
+              </div>
+              <div class="wa-of">
+                <div class="oh">🔒 Pix · Open Finance</div>
+                <div class="ob">Pague pelo seu banco, sem copiar código.
+                  <div class="banks"><span class="bk">Banco 1</span><span class="bk">Banco 2</span><span class="bk">Banco 3</span></div>
+                </div>
+              </div>
+              <div class="msg msg-in">✅ <strong>Pago!</strong> Pronto para retirada na loja Moema em 20 min. 💚<div class="msg-time">10:15</div></div>
+            </div>
+            <div class="wa-input-bar"><div class="inp">Mensagem</div><div class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm7 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12z"/></svg></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEEP DIVE 05 · APOIAR ============ -->
+<section id="apoiar" data-nav="05 · Apoiar">
+  <div class="wrap">
+    <div class="deep rev reveal">
+      <div class="deep-txt">
+        <div class="stepnum"><span class="cir">05</span> Apoiar <span class="prod">· BLiP Desk + Copilot</span></div>
+        <h3>O que sobra para o humano chega pronto.</h3>
+        <p class="desc">Quando a conversa precisa de gente, o <b>BLiP Desk com Copilot</b> entrega ao atendente um <b>resumo inteligente</b> da conversa, o sentimento do cliente e uma resposta sugerida no tom da RD — sem reler a thread inteira nem alternar entre abas.</p>
+        <div class="exstack">
+          <div class="ex">
+            <div class="exh">O que o Copilot faz</div>
+            <ol class="steps">
+              <li><b>Resumo automático</b>: quem é o cliente, o que quer, o que já foi tentado.</li>
+              <li><b>Resposta sugerida</b> a partir da base de conhecimento da RD.</li>
+              <li><b>Melhoria de texto</b> e transcrição de áudio em um clique.</li>
+            </ol>
+          </div>
+          <div class="ex gain">
+            <div class="exh">Ganhos reais</div>
+            <p>Menor tempo médio de atendimento, respostas padronizadas e a <b>mesma equipe cuidando de mais gente</b>, com mais qualidade.</p>
+            <div class="gchips"><span>− TMA</span><span class="go">+ capacidade</span><span class="b">Padronização</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="deep-vis">
+        <div class="copilot">
+          <div class="ch">✦ Copilot · Resumo Inteligente</div>
+          <div class="cb">
+            <div class="lb">Cliente</div>
+            <div>Marina Alves · cliente Stix · pedido <strong>478213004</strong>, medicamento contínuo atrasado 2 dias.</div>
+            <div class="lb">Sentimento</div>
+            <div class="chips"><span class="chip r">Insatisfação</span><span class="chip y">Risco de churn</span></div>
+            <div class="lb">Resposta sugerida</div>
+            <div class="sugg">"Marina, confirmei o reagendamento da sua entrega para amanhã até as 18h e apliquei um crédito de cortesia. Seu tratamento não vai ficar sem cobertura. 💚"</div>
+          </div>
+          <div class="cf"><span>Sugerir resposta</span><span>Melhorar texto</span><span>Transcrever áudio</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLIP BRAIN ============ -->
+<section id="brain" data-nav="Blip Brain">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Inteligência para o time de negócio</div>
+      <h2 style="max-width:24ch">O Blip Brain <span class="g">pensa junto com o time da RD.</span></h2>
+      <p class="lead">Além dos agentes que conversam com o cliente, o <b>Blip Brain</b> é o copiloto de dados para quem toca a operação: basta perguntar em linguagem natural para cruzar informação, gerar um insight e já sair com uma ação pronta para colocar no ar.</p>
+    </div>
+
+    <div class="brain reveal" id="brainDemo"></div>
+
+    <div class="exec reveal" style="margin-top:5vh">
+      <div class="ex">
+        <div class="exh">O que o Brain faz</div>
+        <div class="fixes" style="margin-top:2px">
+          <div class="fix"><span class="pi">📊</span><span class="px"><b>Explora os dados da operação</b> — vendas por loja, recompra, estoque e atendimento, sem precisar de um analista para cada pergunta.</span></div>
+          <div class="fix"><span class="pi">💡</span><span class="px"><b>Transforma pergunta em insight</b> — identifica padrões e segmentos a partir de uma pergunta simples, em português.</span></div>
+          <div class="fix"><span class="pi">🚀</span><span class="px"><b>Sai direto para a ação</b> — a régua ou campanha nasce pronta para publicar, sem passar por outra ferramenta.</span></div>
+        </div>
+      </div>
+      <div class="ex gain">
+        <div class="exh">Ganhos reais</div>
+        <p>O tempo entre <b>"tive uma ideia"</b> e <b>"a campanha está no ar"</b> cai de dias para minutos — sem depender de fila de BI ou de squad de dados.</p>
+        <div class="gchips"><span>Decisão em minutos</span><span class="go">Sem depender de BI</span><span class="b">Ação pronta para publicar</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASOS DE USO ============ -->
+<section id="casos" data-nav="Casos de uso">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Todo o ecossistema em ação</div>
+      <h2 style="max-width:24ch">Mais casos de uso sobre <span class="g">a mesma plataforma.</span></h2>
+      <p class="lead">Além do ciclo principal, veja o que o ecossistema Blip habilita na jornada de saúde e bem-estar da RD — de vendas a serviços, tudo orquestrado pelo Studio.</p>
+    </div>
+
+    <div class="uc-cat reveal">
+      <h3><span class="ico">🛒</span> Vendas</h3>
+      <div class="uc-grid">
+        <div class="uc"><div class="ut"><span class="e">📦</span>Catálogo de produtos</div><p>Vitrine navegável na conversa, com busca em linguagem natural, preço e disponibilidade por loja.</p><div class="prod">Studio + Catálogo</div></div>
+        <div class="uc"><div class="ut"><span class="e">💊</span>Vendas com agente · leitura de receita</div><p>O cliente envia a foto da receita e a IA interpreta os itens, monta o orçamento e confirma o estoque.</p><div class="prod">Studio + LLM de visão</div></div>
+        <div class="uc"><div class="ut"><span class="e">⚗️</span>Venda de manipulado</div><p>Coleta da fórmula, orçamento assistido e acompanhamento do preparo, tudo no chat.</p><div class="prod">Studio + Agente Receitas</div></div>
+        <div class="uc"><div class="ut"><span class="e">🔁</span>Carrinho abandonado</div><p>Recuperação proativa de quem parou no meio, dentro da janela de conversa, com incentivo certo.</p><div class="prod">Blip Marketing</div></div>
+        <div class="uc"><div class="ut"><span class="e">📍</span>Encontrar loja</div><p>Localização da unidade mais próxima com o item desejado em estoque, por geolocalização.</p><div class="prod">Studio + Estoque</div></div>
+        <div class="uc"><div class="ut"><span class="e">🏪</span>Compra e retirada</div><p>Compra no chat com retirada agendada na loja — conveniência sem fila.</p><div class="prod">Studio + Payments</div></div>
+        <div class="uc"><div class="ut"><span class="e">✅</span>Checkout 100% no WhatsApp</div><p>Pagamento com Pix Open Finance, cartão ou boleto sem sair da conversa.</p><div class="prod">Blip Payments</div></div>
+      </div>
+    </div>
+
+    <div class="uc-cat b reveal">
+      <h3><span class="ico">📮</span> Pós-venda</h3>
+      <div class="uc-grid">
+        <div class="uc"><div class="ut"><span class="e">🚚</span>Rastreamento de pedido</div><p>Status em tempo real e notificações proativas de separação, retirada e saída para entrega.</p><div class="prod">Studio + Logística</div></div>
+        <div class="uc"><div class="ut"><span class="e">↩️</span>Troca e devolução</div><p>Abertura e acompanhamento do processo guiados pela IA, sem formulário e sem fila.</p><div class="prod">Studio + ERP</div></div>
+        <div class="uc"><div class="ut"><span class="e">❓</span>Dúvida sobre produtos</div><p>Orientação sobre uso, posologia e cuidados, com transbordo ao farmacêutico quando necessário.</p><div class="prod">Studio + Base de conhecimento</div></div>
+      </div>
+    </div>
+
+    <div class="uc-cat go reveal">
+      <h3><span class="ico">🗓️</span> Serviços</h3>
+      <div class="uc-grid">
+        <div class="uc"><div class="ut"><span class="e">💉</span>Agendamento de serviços</div><p>Marcação de <strong>vacinas e exames</strong> com consulta de disponibilidade por loja, confirmação e lembrete — sem ligação.</p><div class="prod">Studio + Agenda</div></div>
+        <div class="uc"><div class="ut"><span class="e">🔔</span>Recompra de contínuo</div><p>Lembrete calculado pelo ciclo de uso do medicamento: a mensagem chega antes do remédio acabar.</p><div class="prod">Agente Recorrência</div></div>
+        <div class="uc"><div class="ut"><span class="e">🎁</span>Fidelidade Stix</div><p>Consulta de pontos, resgate e ofertas personalizadas integradas ao programa Stix, dentro do chat.</p><div class="prod">Studio + Stix</div></div>
+        <div class="uc"><div class="ut"><span class="e">🧪</span>Testes rápidos</div><p>Agendamento de glicemia, colesterol e outros testes rápidos na loja, com envio automático do resultado.</p><div class="prod">Studio + Agenda</div></div>
+      </div>
+    </div>
+
+    <div class="uc-cat p reveal">
+      <h3><span class="ico">🩺</span> Saúde &amp; cuidado contínuo</h3>
+      <div class="uc-grid">
+        <div class="uc"><div class="ut"><span class="e">📈</span>Adesão a tratamento contínuo</div><p>A IA acompanha o ciclo de hipertensão, diabetes e outras condições crônicas e reforça a adesão ao tratamento.</p><div class="prod">Agente Recorrência</div></div>
+        <div class="uc"><div class="ut"><span class="e">💬</span>Teleorientação farmacêutica</div><p>Dúvidas sobre bula, posologia e uso correto, com transbordo ao farmacêutico responsável quando necessário.</p><div class="prod">Studio + Base de conhecimento</div></div>
+        <div class="uc"><div class="ut"><span class="e">⚠️</span>Alerta de interação medicamentosa</div><p>Antes de fechar o carrinho, a IA avisa sobre combinações de risco entre os itens comprados.</p><div class="prod">Agente Receitas</div></div>
+        <div class="uc"><div class="ut"><span class="e">🧴</span>Skin &amp; beauty quiz</div><p>Recomendação personalizada de dermocosméticos por tipo de pele, idade e necessidade, direto na conversa.</p><div class="prod">Studio + Catálogo</div></div>
+        <div class="uc"><div class="ut"><span class="e">💊</span>Assinatura de vitaminas e suplementos</div><p>Recorrência configurada na conversa, com frequência e desconto calculados pela IA.</p><div class="prod">Studio + Payments</div></div>
+        <div class="uc"><div class="ut"><span class="e">🏥</span>Consulta de cobertura por convênio</div><p>Confirma se o medicamento é coberto pelo plano de saúde e o valor da coparticipação antes da compra.</p><div class="prod">Studio + Convênios</div></div>
+        <div class="uc"><div class="ut"><span class="e">♿</span>Prioridade para idosos e PCD</div><p>Fila de atendimento prioritária e entrega facilitada para públicos que precisam de mais cuidado.</p><div class="prod">Studio + Logística</div></div>
+        <div class="uc"><div class="ut"><span class="e">🧾</span>Nota fiscal para reembolso</div><p>Emissão e envio da nota fiscal para reembolso junto ao convênio, sem sair da conversa.</p><div class="prod">Studio + ERP</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JORNADA INTERATIVA ============ -->
+<section id="jornada" data-nav="Jornada completa">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">A experiencia, na pratica</div>
+      <h2 style="max-width:24ch">A jornada completa, <span class="g">do jeito certo.</span></h2>
+      <p class="lead">Um fluxo real de compra ponta a ponta no WhatsApp, com <b>cadastro via WhatsApp Flows</b> e <b>pagamento com Blip Payments e Pix Open Finance</b>. Toque nos botoes dentro do celular para avancar cada etapa.</p>
+    </div>
+    <div class="jor-grid">
+      <div class="jor-side reveal">
+        <div class="jhint">&#128070; Toque para avancar as etapas</div>
+        <div class="jsteps" id="jorSteps">
+          <div class="jstep"><span class="jnum">1</span><div><div class="jt">Pedido</div><div class="jp">Escolha do produto na conversa</div><div class="jprod">Blip Studio</div></div></div>
+          <div class="jstep"><span class="jnum">2</span><div><div class="jt">Cadastro</div><div class="jp">Formulario nativo dentro do chat</div><div class="jprod">WhatsApp Flows</div></div></div>
+          <div class="jstep"><span class="jnum">3</span><div><div class="jt">Entrega</div><div class="jp">Retirada ou entrega expressa</div><div class="jprod">WhatsApp Flows</div></div></div>
+          <div class="jstep"><span class="jnum">4</span><div><div class="jt">Pagamento</div><div class="jp">Pix sem sair do WhatsApp</div><div class="jprod">Blip Payments &middot; Pix Open Finance</div></div></div>
+          <div class="jstep"><span class="jnum">&#10003;</span><div><div class="jt">Concluido</div><div class="jp">Pedido pago e pronto</div><div class="jprod">Funil fechado no canal</div></div></div>
+        </div>
+      </div>
+      <div class="reveal" style="justify-self:center">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="wa-screen">
+            <div class="wa-header"><span class="wa-back">&#8249;</span><div class="wa-avatar">RD</div><div><div class="wa-contact-name">RD Saude <svg class="wa-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="wa-contact-status">online</div></div></div>
+            <div class="wa-body" id="jorBody"></div>
+            <div class="wa-input-bar"><div class="inp">Mensagem</div><div class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm7 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12z"/></svg></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESUMO DOS GANHOS ============ -->
+<section id="ganhos" data-nav="Resumo dos ganhos">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">O que a RD ganha</div>
+      <h2 style="max-width:24ch">Menos custo, mais venda, <span class="g">um só painel.</span></h2>
+      <p class="lead">O impacto do Contato Inteligente aparece em três frentes ao mesmo tempo — e é gerido de um lugar só.</p>
+    </div>
+    <div class="gains reveal">
+      <div class="gain-c"><div class="gn">−custo</div><div class="gl"><b>Eficiência operacional.</b> Agentes de IA resolvem a maior parte dos contatos sem fila, reduzindo o custo por atendimento e o transbordo humano.</div></div>
+      <div class="gain-c go"><div class="gn">+venda</div><div class="gl"><b>Receita no canal.</b> Da recomendação ao checkout no WhatsApp, a mesma conversa que cuida também converte e recompra.</div></div>
+      <div class="gain-c b"><div class="gn">+CX</div><div class="gl"><b>Experiência de saúde.</b> Resposta certa, personalizada e 24h — com transbordo ao farmacêutico quando importa.</div></div>
+      <div class="gain-c lt"><div class="gn">1 painel</div><div class="gl"><b>Visão 360°.</b> Escuta, mídia, agentes, pagamento e atendimento com relatórios nativos, sem integrar ferramentas soltas.</div></div>
+    </div>
+
+    <div class="platform reveal">
+      <div class="eyebrow" style="color:#CFF3DC">Gestão em uma única plataforma</div>
+      <h2 style="max-width:22ch">Tudo conversa entre si. <span class="go">Por design.</span></h2>
+      <p class="lead">Escutar, atrair, entender, converter e apoiar deixam de ser ferramentas isoladas e passam a ser um único fluxo, com contexto compartilhado do primeiro sinal público até a fidelização.</p>
+      <div class="plat-grid">
+        <div class="plat-c"><div class="pn">👂 Escutar</div><p>Stilingue — social listening e resposta centralizada.</p></div>
+        <div class="plat-c"><div class="pn">🎯 Atrair</div><p>Blip Marketing — anúncios e sinais em um só lugar.</p></div>
+        <div class="plat-c"><div class="pn">🧠 Entender</div><p>Blip Studio — orquestração de agentes de IA.</p></div>
+        <div class="plat-c"><div class="pn">💳 Converter</div><p>Blip Payments — checkout e Pix Open Finance no chat.</p></div>
+        <div class="plat-c"><div class="pn">🤝 Apoiar</div><p>BLiP Desk + Copilot — o humano no lugar certo.</p></div>
+        <div class="plat-c"><div class="pn">📊 Medir</div><p>Relatórios nativos — visão 360° da operação.</p></div>
+      </div>
+    </div>
+
+    <div class="cta reveal">
+      <h2>Vamos ligar o futuro do relacionamento na <span class="g">RD Saúde?</span></h2>
+      <a class="btn" href="#capa">Iniciar a jornada com a Blip →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>Blip × RD Saúde</b> · Contato Inteligente que cuida e que vende<br>
+  Documento ilustrativo para fins comerciais · Setembro de 2026
+</footer>
+
+<script>
+(function(){
+"use strict";
+var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* progress + topbar */
+var prog=document.getElementById('progress'),tb=document.getElementById('topbar');
+function onScroll(){
+  var h=document.documentElement,st=h.scrollTop||document.body.scrollTop,sh=h.scrollHeight-h.clientHeight;
+  prog.style.width=(sh>0?st/sh*100:0)+'%';
+  tb.classList.toggle('solid',st>50);
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -5% 0px'});
+[].forEach.call(document.querySelectorAll('.reveal'),function(e){io.observe(e);});
+
+/* dots nav */
+var dots=document.getElementById('dots');
+var secs=[].slice.call(document.querySelectorAll('[data-nav]'));
+secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.innerHTML='<span>'+s.getAttribute('data-nav')+'</span>';dots.appendChild(a);});
+var dotEls=[].slice.call(dots.children);
+var navIo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=secs.indexOf(e.target);dotEls.forEach(function(d,k){d.classList.toggle('on',k===i);});}});},{threshold:.15,rootMargin:'-30% 0px -55% 0px'});
+secs.forEach(function(s){navIo.observe(s);});
+
+/* count-up */
+function fmt(v,dec){return v.toLocaleString('pt-BR',{minimumFractionDigits:dec,maximumFractionDigits:dec});}
+function countUp(el){
+  var to=parseFloat(el.getAttribute('data-to')),dec=parseInt(el.getAttribute('data-dec')||'0',10),
+      suf=el.getAttribute('data-suf')||'',pre=el.getAttribute('data-pre')||'',dur=1400,t0=null;
+  if(rm){el.textContent=pre+fmt(to,dec)+suf;return;}
+  function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);var e=1-Math.pow(1-p,3);el.textContent=pre+fmt(to*e,dec)+suf;if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+}
+var cIo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);cIo.unobserve(e.target);}});},{threshold:.4});
+[].forEach.call(document.querySelectorAll('.count'),function(e){cIo.observe(e);});
+
+/* ring progress trigger */
+var rw=document.getElementById('ringWrap');
+if(rw){new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');o.disconnect();}});},{threshold:.3}).observe(rw);}
+
+/* ===== CICLO · ring ===== */
+function ico(d){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:var(--rd)">'+d+'</svg>';}
+var cycle=[
+ {t:'Escutar',role:'Antes do contato · Stilingue',mini:'social listening',
+  what:'A RD escuta menções sobre saúde e farmácia enquanto o tema ainda é público, por praça e sentimento, e responde tudo de um painel só.',
+  cs:'Alguém no X pergunta onde tem Mounjaro — a RD responde e chama a pessoa para o WhatsApp.'},
+ {t:'Atrair',role:'Aquisição · Blip Marketing',mini:'anúncio → conversa',
+  what:'Anúncios de Meta, Google e TikTok centralizados, com sinais de conversão e janela de 72h isenta ao abrir a conversa.',
+  cs:'Campanha de conscientização sobre canetas emagrecedoras abre o chat sem custo de mensageria.'},
+ {t:'Entender',role:'Orquestração · Blip Studio',mini:'agentes de IA',
+  what:'O orquestrador identifica a intenção na primeira mensagem e roteia para o agente certo — vendas, receita, recorrência ou SAC.',
+  cs:'"Preciso dos remédios do meu pai" e o Agente de Receitas já assume a conversa.'},
+ {t:'Converter',role:'Checkout · Blip Payments',mini:'pago no chat',
+  what:'Carrinho por WhatsApp Flows e pagamento por Pix Open Finance, cartão ou boleto — sem sair da conversa.',
+  cs:'O pedido é pago por Pix dentro do chat; retirada ou entrega na mesma tela.'},
+ {t:'Apoiar',role:'Humano + Copilot · BLiP Desk',mini:'IA para o time',
+  what:'Quando precisa de gente, o atendente recebe resumo, sentimento e resposta sugerida via Copilot — sem reler a thread.',
+  cs:'Seis linhas de resumo substituem a leitura do histórico inteiro antes da resposta do farmacêutico.'},
+ {t:'Acompanhar',role:'Pós-pedido',mini:'status proativo',
+  what:'Status em tempo real e avisos de separação, retirada e entrega — antes de o cliente precisar perguntar.',
+  cs:'"Seu pedido está pronto para retirada na loja Savassi" chega automaticamente.'},
+ {t:'Repor',role:'Recorrência',mini:'recompra na hora',
+  what:'Lembretes calculados pelo ciclo de uso do medicamento contínuo: a mensagem chega antes do remédio acabar.',
+  cs:'30 dias depois: "sua Losartana deve estar acabando — quer repetir?"'},
+ {t:'Fidelizar',role:'O ciclo recomeça · Stix',mini:'LTV e cross-sell',
+  what:'Ofertas personalizadas e integração com o programa Stix. A próxima conversa parte do que já se sabe do cliente.',
+  cs:'Quem comprou protetor solar recebe oferta de pós-sol na semana seguinte, com pontos Stix.'}
+];
+var rn=document.getElementById('ringNodes'),cpn=document.getElementById('cyclePanel');
+if(rn&&cpn){
+  var R=38,nodeEls=[],cur=-1,pinned=false,timer=null;
+  var dots2='';for(var q=0;q<cycle.length;q++)dots2+='<i></i>';
+  cycle.forEach(function(c,i){
+    var a=(-90+i*(360/cycle.length))*Math.PI/180;
+    var b=document.createElement('button');b.className='rnode';b.type='button';
+    b.style.left=(50+R*Math.cos(a))+'%';b.style.top=(50+R*Math.sin(a))+'%';
+    b.setAttribute('aria-label',c.t+' — '+c.role);
+    b.innerHTML='<span class="ric">'+String(i+1).padStart(2,'0')+'</span><span class="rlb">'+c.t+'</span><span class="rsb">'+c.mini+'</span>';
+    b.addEventListener('mouseenter',function(){pinned=true;show(i);});
+    b.addEventListener('focus',function(){pinned=true;show(i);});
+    b.addEventListener('click',function(){pinned=true;show(i);});
+    b.addEventListener('mouseleave',function(){pinned=false;});
+    b.addEventListener('blur',function(){pinned=false;});
+    rn.appendChild(b);nodeEls.push(b);
+  });
+  function show(i){
+    if(i===cur)return;cur=i;var c=cycle[i];
+    nodeEls.forEach(function(n,k){n.classList.toggle('on',k===i);});
+    cpn.innerHTML='<div class="cp-step">Momento '+String(i+1).padStart(2,'0')+' de '+cycle.length+'</div>'+
+      '<div class="cp-name">'+c.t+'</div><div class="cp-role">'+c.role+'</div>'+
+      '<div class="cp-lab">O que entrega</div><p class="cp-what">'+c.what+'</p>'+
+      '<div class="cp-case"><div class="cp-lab" style="margin-top:0">Nesta jornada</div><p>'+c.cs+'</p></div>'+
+      '<div class="cp-dots">'+dots2+'</div>';
+    var ds=cpn.querySelectorAll('.cp-dots i');if(ds[i])ds[i].classList.add('on');
+  }
+  show(0);
+  if(!rm){
+    new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){
+      timer=setInterval(function(){if(!pinned)show((cur+1)%cycle.length);},4600);o.disconnect();
+    }});},{threshold:.3}).observe(rn);
+  }
+}
+})();
+/* ===== JORNADA interativa (click-to-advance) ===== */
+(function(){
+var body=document.getElementById('jorBody');
+if(!body)return;
+var stage=0, reg={nome:false,cpf:false,cep:false}, deliv=null, busy=false, hist=[];
+var TOTAL=4;
+function tm(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
+function mi(x){return '<div class="msg msg-in">'+x+'<div class="msg-time">'+tm()+'</div></div>';}
+function mo(x){return '<div class="msg msg-out">'+x+'<div class="msg-time">'+tm()+'</div></div>';}
+function greet(){return mi('Ola! &#128075; Sou a assistente da <strong>RD Saude</strong>. Como posso ajudar?');}
+function stepTag(n,label){return '<div class="fh">'+label+'<span style="margin-left:auto;font-size:9.5px;opacity:.85;font-weight:600">Etapa '+n+'/'+TOTAL+'</span></div>';}
+function ctrl(){
+  if(busy)return '';
+  if(stage===0){return '<div class="wa-act" data-act="buy">&#128722; Comprar Losartana 50mg</div>';}
+  if(stage===1){
+    function fld(k,label,val){var f=reg[k];return '<div class="fld'+(f?' filled':'')+'" data-act="fill-'+k+'"><span>'+(f?val:label)+'</span><span class="fck">'+(f?'&#10003;':'')+'</span></div>';}
+    var all=reg.nome&&reg.cpf&&reg.cep;
+    return '<div class="wa-flow">'+stepTag(1,'&#128203; Cadastro rapido')+'<div class="fb">'+
+      fld('nome','Nome completo','Ana Costa')+
+      fld('cpf','CPF','&bull;&bull;&bull;.&bull;&bull;&bull;.&bull;&bull;&bull;-42')+
+      fld('cep','CEP','04077-000')+
+      '<div class="wa-act'+(all?'':' ghost')+'" data-act="submit-reg">'+(all?'Enviar cadastro':'Toque nos campos para preencher')+'</div>'+
+      '</div></div>';
+  }
+  if(stage===2){
+    function opt(k,label){var s=deliv===k;return '<div class="fopt'+(s?' sel':'')+'" data-act="sel-'+k+'"><span class="rad"></span>'+label+'</div>';}
+    return '<div class="wa-flow">'+stepTag(2,'&#128666; Entrega')+'<div class="fb">'+
+      opt('retira','Retirar &middot; loja Moema')+
+      opt('entrega','Entrega expressa &middot; 40 min')+
+      '<div class="wa-act'+(deliv?'':' ghost')+'" data-act="confirm-deliv">'+(deliv?'Confirmar':'Selecione uma opcao')+'</div>'+
+      '</div></div>';
+  }
+  if(stage===3){
+    return '<div class="wa-of"><div class="oh">&#128274; Blip Payments <span style="margin-left:auto;font-size:9.5px;opacity:.85;font-weight:600">Etapa 3/'+TOTAL+'</span></div><div class="ob">Losartana 50mg &mdash; <b style="color:#0a1a12">R$ 12,49</b>. Pix via Open Finance, direto pelo seu banco.<div class="banks"><span class="bk">Banco 1</span><span class="bk">Banco 2</span><span class="bk">Banco 3</span></div></div></div>'+
+      '<div class="wa-act" data-act="pay">Pagar R$ 12,49 com Pix</div>';
+  }
+  if(stage===4){return '<div class="wa-act ghost" data-act="restart">&#128260; Recomecar a jornada</div>';}
+  return '';
+}
+function updSteps(){
+  var els=document.querySelectorAll('#jorSteps .jstep');
+  [].forEach.call(els,function(el,i){el.classList.remove('on','done');if(i<stage){el.classList.add('done');}else if(i===stage){el.classList.add('on');}});
+}
+var MAXH=3;
+function keep(){hist=hist.slice(-MAXH);}
+function render(){body.innerHTML=hist.join('')+ctrl();body.scrollTop=99999;updSteps();}
+function typing(cb){
+  busy=true;
+  body.innerHTML=hist.join('')+'<div class="msg msg-in" style="padding:9px 12px"><span class="typ"></span><span class="typ"></span><span class="typ"></span></div>';
+  body.scrollTop=99999;updSteps();
+  setTimeout(function(){busy=false;cb();},760);
+}
+hist=[greet()];
+body.addEventListener('click',function(e){
+  var t=e.target.closest('[data-act]');if(!t||busy)return;
+  var a=t.getAttribute('data-act');
+  if(a==='buy'){
+    hist.push(mo('Quero comprar Losartana 50mg &#128138;'));keep();
+    typing(function(){hist.push(mi('Boa escolha! <strong>Losartana 50mg Generico &middot; 30cp &mdash; R$ 12,49</strong>. Vamos com um cadastro rapido &#128071;'));keep();stage=1;render();});
+  } else if(a==='fill-nome'){reg.nome=!reg.nome;render();}
+  else if(a==='fill-cpf'){reg.cpf=!reg.cpf;render();}
+  else if(a==='fill-cep'){reg.cep=!reg.cep;render();}
+  else if(a==='submit-reg'){
+    if(!(reg.nome&&reg.cpf&&reg.cep))return;
+    hist.push(mo('&#10003; Cadastro enviado'));keep();
+    typing(function(){hist.push(mi('Cadastro pronto via <strong>WhatsApp Flows</strong> &#9989; Como prefere receber?'));keep();stage=2;render();});
+  }
+  else if(a==='sel-retira'){deliv='retira';render();}
+  else if(a==='sel-entrega'){deliv='entrega';render();}
+  else if(a==='confirm-deliv'){
+    if(!deliv)return;
+    var lbl=deliv==='retira'?'Retirar &middot; loja Moema':'Entrega expressa &middot; 40 min';
+    hist.push(mo(lbl));keep();
+    typing(function(){hist.push(mi('Perfeito! &#128205; Agora e so pagar, sem sair do WhatsApp:'));keep();stage=3;render();});
+  }
+  else if(a==='pay'){
+    hist.push(mo('Pagar com Pix &#128274;'));keep();
+    typing(function(){
+      hist.push(mi('&#9989; <strong>Pago via Pix (Open Finance)!</strong> Tudo dentro do WhatsApp com <strong>Blip Payments</strong>.'));
+      keep();
+      hist.push(mi('Pronto para retirada na <strong>loja Moema</strong> em ~20 min. &#128154;'));
+      keep();
+      stage=4;render();
+    });
+  }
+  else if(a==='restart'){stage=0;reg={nome:false,cpf:false,cep:false};deliv=null;hist=[greet()];render();}
+});
+render();
+})();
+
+/* ===== BLIP BRAIN · demo (loop) ===== */
+(function(){
+"use strict";
+var rmB=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+var bd=document.getElementById('brainDemo'); if(!bd)return;
+
+var greenBalloon='<svg class="bblg2" viewBox="0 0 40 40" style="width:20px;height:20px"><path d="M20 3C10.6 3 3 9.7 3 18c0 4.6 2.4 8.7 6.2 11.4-.3 2.6-1.3 5-2.8 6.9-.3.4 0 .9.5.8 3.6-.6 6.5-2.2 8.5-3.9 1.5.4 3 .6 4.6.6 9.4 0 17-6.7 17-15S29.4 3 20 3Z" fill="#008A3E"/></svg>';
+var railIcons='<span class="r0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-7-4 18-4-7-6 3z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M20 19v-11"/></svg>';
+var arrowIco='<svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+var cardsHTML='<div class="bcard"><div class="bi">📈</div><div class="bt">Ver o último relatório</div><div class="bp">Vendas por loja, ticket médio e recompra no período.</div></div>'+
+  '<div class="bcard"><div class="bi">🎯</div><div class="bt">Metas comerciais</div><div class="bp">Receita do canal, vendas com receita e programa Stix.</div></div>'+
+  '<div class="bcard"><div class="bi">📖</div><div class="bt">Base de conhecimento</div><div class="bp">Política comercial, bulas, estoque e escopo de entrega.</div></div>';
+
+bd.innerHTML=
+  '<div class="brain-top"><div class="wd"><i></i><i></i><i></i></div>'+greenBalloon+'<span class="bc">RD Saúde · Workspace</span>'+
+    '<span class="bpill">✦ Explore with Brain</span><span class="bav"></span></div>'+
+  '<div class="brain-body"><div class="brain-rail">'+railIcons+'</div><div class="brain-main">'+
+    '<div class="brain-home" id="bHomeRD"><div class="brain-greet"><div class="spk">✦</div><h4>Olá, equipe RD Saúde.</h4><div class="bgrad">Use IA para conduzir a evolução do canal</div></div>'+
+      '<div class="brain-cards">'+cardsHTML+'</div>'+
+      '<div class="brain-input" id="bInputRD"><div class="btxt" id="bTxtRD"><span class="bph">Chat with Brain</span></div>'+
+        '<div class="bchips"><span class="bchip">＋</span><span class="bchip">✦ Create</span><span class="bchip on">▤ Plan</span><span class="bchip">🔍 Explore</span><span class="bsnd">'+arrowIco+'</span></div></div>'+
+    '</div>'+
+    '<div class="brain-conv" id="bConvRD"></div>'+
+  '</div></div>';
+
+var promptRD='Monte uma régua para clientes com medicamento contínuo comprado nos últimos 30 dias que ainda não fizeram recompra.';
+var home=bd.querySelector('#bHomeRD'),conv=bd.querySelector('#bConvRD'),input=bd.querySelector('#bInputRD'),txt=bd.querySelector('#bTxtRD');
+var convHTML='<div class="bubu" id="bBubuRD">'+promptRD+'</div>'+
+  '<div class="bthink" id="bThinkRD"><span class="bsp"></span> Cruzando compras, ciclo de uso e recompra no canal…</div>'+
+  '<div class="binsight" id="bInsRD">Encontrei <b>6.280 clientes</b> com medicamento contínuo comprado e sem recompra no prazo. Melhor janela: <b>até 5 dias antes do fim do ciclo</b>. Depois disso, a recompra cai pela metade.</div>'+
+  '<div class="bcamp" id="bCampRD"><div class="bch">✦ Régua · Recompra de medicamento contínuo</div>'+
+    '<div class="bcg"><div class="bcrow">Canal: <b>WhatsApp</b></div><div class="bcrow">Segmento: <b>Medicamento contínuo · 6.280</b></div><div class="bcrow">Gatilho: <b>5 dias antes do fim do ciclo de uso</b></div><div class="bcrow">Oferta: <b>Recompra com entrega agendada no fluxo</b></div></div>'+
+    '<div class="bcf"><span class="bcbtn">Criar régua</span><span class="bcproj">Projeção: R$ 1,2 mi em recompra · retenção +18%</span></div></div>';
+
+var tmrB=[];
+function clearAllB(){tmrB.forEach(clearTimeout);tmrB=[];}
+function tB(fn,ms){tmrB.push(setTimeout(fn,ms));}
+function resetB(){clearAllB();conv.classList.remove('show');conv.innerHTML='';input.classList.remove('live');txt.innerHTML='<span class="bph">Chat with Brain</span>';home.style.opacity='1';}
+function runB(){
+  resetB();
+  if(rmB){
+    conv.innerHTML=convHTML;conv.classList.add('show');home.style.opacity='0';
+    ['bBubuRD','bThinkRD','bInsRD','bCampRD'].forEach(function(id){var e=conv.querySelector('#'+id);if(e)e.classList.add('show');});
+    var th=conv.querySelector('#bThinkRD');if(th)th.style.display='none';return;
+  }
+  tB(function(){
+    input.classList.add('live');txt.innerHTML='<span class="bcur"></span>';
+    var i=0;
+    (function type(){
+      if(i<=promptRD.length){txt.innerHTML=promptRD.slice(0,i)+'<span class="bcur"></span>';i++;tB(type,22);}
+      else{send();}
+    })();
+  },900);
+  function send(){
+    tB(function(){
+      home.style.opacity='0';conv.innerHTML=convHTML;conv.classList.add('show');
+      var bubu=conv.querySelector('#bBubuRD'),think=conv.querySelector('#bThinkRD'),ins=conv.querySelector('#bInsRD'),camp=conv.querySelector('#bCampRD');
+      tB(function(){bubu.classList.add('show');},60);
+      tB(function(){think.classList.add('show');},520);
+      tB(function(){think.style.display='none';ins.classList.add('show');},1900);
+      tB(function(){camp.classList.add('show');},2500);
+      tB(runB,8000);
+    },520);
+  }
+}
+var startedB=false;
+new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting&&!startedB){startedB=true;runB();}
+});},{threshold:.35}).observe(bd);
+})();
+
+</script>
+</body>
+</html>

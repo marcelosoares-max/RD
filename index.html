@@ -193,7 +193,7 @@ h3{font-family:var(--font);font-size:20px;font-weight:700;letter-spacing:-.01em;
 .phone-frame{width:310px;max-width:100%;height:640px;background:#0e1512;border-radius:40px;border:7px solid #1d2521;overflow:hidden;position:relative;box-shadow:0 0 0 1px #cdd8d1,0 26px 60px rgba(12,36,23,.28);margin:0 auto}
 .phone-frame.sm{width:280px;height:540px}
 .phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#0e1512;border-radius:0 0 16px 16px;z-index:10}
-.wa-screen{width:100%;height:100%;display:flex;flex-direction:column;background:var(--wa-bg);font-family:-apple-system,'Helvetica Neue',sans-serif;overflow:hidden}
+.wa-screen{width:100%;height:100%;display:flex;flex-direction:column;background:var(--wa-bg);font-family:-apple-system,'Helvetica Neue',sans-serif;overflow:hidden;position:relative}
 .wa-header{background:var(--wa-head);padding:28px 12px 9px;display:flex;align-items:center;gap:10px;flex-shrink:0;min-height:62px}
 .wa-back{color:#fff;font-size:19px;margin-right:-4px;opacity:.9}
 .wa-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;background:linear-gradient(135deg,var(--rd),var(--rd-dk))}
@@ -500,6 +500,151 @@ footer b{color:var(--rd-dk)}
 .bcproj{font-size:11px;color:var(--rd-dk);font-weight:700}
 @media(max-width:760px){.brain-cards{grid-template-columns:1fr}.brain-body{flex-direction:column;min-height:0}.brain-rail{flex-direction:row;width:100%;border-right:0;border-bottom:1px solid #f0f0f4;padding:8px 12px}.bchips{flex-wrap:wrap}}
 
+/* ---------- WhatsApp quick-reply / list / pix (Converter interativo) ---------- */
+.cvhint{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--rd-dk);background:rgba(0,138,62,.08);border:1px solid rgba(0,138,62,.24);border-radius:999px;padding:7px 14px;margin-bottom:14px}
+.wa-btns{background:#fff;border-radius:0 0 8px 8px;overflow:hidden;box-shadow:0 1px .5px rgba(0,0,0,.13);align-self:stretch}
+.wa-btn{border:none;border-top:1px solid #E9EDEA;padding:9px 8px;font-size:11.5px;font-weight:600;color:var(--rd);cursor:pointer;text-align:center;width:100%;background:#fff;display:flex;align-items:center;justify-content:center;gap:6px;transition:.14s}
+.wa-btn:hover{background:rgba(0,138,62,.05)}
+.wa-btn:active{background:rgba(0,138,62,.10)}
+.wa-btn.mut{color:#8a95ab;cursor:default}
+.wa-btn.mut:hover{background:#fff}
+.waprod{display:flex;gap:9px;align-items:center;background:#fff;border-radius:8px;padding:9px;box-shadow:0 1px .5px rgba(0,0,0,.12);align-self:stretch}
+.waprod .wpi{width:46px;height:46px;border-radius:8px;background:linear-gradient(135deg,var(--mint),#fff);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:23px;flex:0 0 auto}
+.waprod .wpt{font-size:11px;font-weight:700;color:#0a1a12;line-height:1.3}
+.waprod .wpp{font-size:11.5px;color:var(--rd-dk);font-weight:800;margin-top:2px}
+.waprod .wpfree{display:inline-block;font-size:8px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--rd);padding:2px 6px;border-radius:5px;margin-top:4px}
+.pixcode{background:#fbfdfc;border:1px dashed #b9ccc0;border-radius:8px;padding:10px 11px;font-family:var(--mono);font-size:9px;color:#0a1a12;word-break:break-all;line-height:1.55;align-self:stretch;box-shadow:0 1px .5px rgba(0,0,0,.08)}
+.copybtn{background:var(--rd);color:#fff;font-size:11.5px;font-weight:700;text-align:center;padding:10px;border-radius:9px;cursor:pointer;align-self:stretch;display:flex;align-items:center;justify-content:center;gap:7px;transition:.16s;box-shadow:0 3px 10px rgba(0,138,62,.2)}
+.copybtn:active{transform:scale(.98)}
+.copybtn.done{background:#0a7a3a;box-shadow:none}
+.listbtn{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px .5px rgba(0,0,0,.13);align-self:stretch}
+.listbtn .lh{padding:10px;font-size:11.5px;font-weight:700;color:var(--rd);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
+.listopt{border-top:1px solid #E9EDEA;padding:10px 12px;font-size:11px;color:#0a1a12;cursor:pointer;display:flex;align-items:center;gap:9px;transition:.14s}
+.listopt:hover{background:rgba(0,138,62,.05)}
+.listopt.mut{color:#9aa4ac;cursor:default}
+.listopt.mut:hover{background:#fff}
+.listopt .lo-ic{font-size:15px;flex:0 0 auto}
+.listopt .lo-tag{margin-left:auto;font-size:8px;font-weight:800;color:var(--rd);background:rgba(0,138,62,.1);padding:2px 6px;border-radius:5px}
+
+/* ---------- Flow modal (WhatsApp Flows animado) ---------- */
+.wa-btn-row{display:flex;flex-direction:column;max-width:88%;align-self:flex-start;width:100%}
+.flow-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:60;opacity:0;pointer-events:none;transition:.3s}
+.flow-overlay.open{opacity:1;pointer-events:auto}
+.flow-modal{position:absolute;bottom:0;left:0;right:0;height:84%;background:#fff;border-radius:16px 16px 0 0;z-index:70;transform:translateY(100%);transition:transform .42s cubic-bezier(.17,.88,.32,1.2);display:flex;flex-direction:column;overflow:hidden}
+.flow-modal.open{transform:translateY(0)}
+.flow-modal .fm-head{padding:11px 14px;border-bottom:1px solid #e8e8e8;display:flex;align-items:center;justify-content:space-between}
+.flow-modal .fm-head h4{flex:1;text-align:center;font-size:13px;font-weight:700;color:#111}
+.flow-modal .fm-head .cls{font-size:16px;cursor:pointer;color:#667781;padding:2px 6px}
+.flow-modal .fm-body{flex:1;overflow-y:auto;padding:16px 14px}
+.flow-modal .fm-flabel{display:flex;align-items:center;gap:6px;color:var(--rd-dk);margin-bottom:12px;font-size:11px;font-weight:700}
+.flow-modal .fm-body h3{font-size:16px;font-weight:800;color:#111;margin-bottom:4px;font-family:var(--font)}
+.flow-modal .fm-body .fm-sub{font-size:11.5px;color:#667781;margin-bottom:14px}
+.flow-modal .fm-body label{display:block;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#667781;margin-bottom:4px;margin-top:13px}
+.flow-modal .fm-body input{width:100%;padding:9px;font-size:12.5px;border:none;border-bottom:2px solid #e0e0e0;background:#f6f6f6;border-radius:6px 6px 0 0;outline:none;font-family:inherit;color:#111;transition:.2s}
+.flow-modal .fm-body input:focus{border-bottom-color:var(--rd);background:#f0faf4}
+.flow-modal .fm-foot{padding:10px 14px 20px;border-top:1px solid #eee}
+.flow-modal .fm-foot button{width:100%;padding:10px;border-radius:24px;background:var(--rd);color:#fff;font-size:12.5px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:.15s}
+.flow-modal .fm-foot button:hover{background:var(--rd-dk)}
+.flow-modal .fm-foot .fm-sec{text-align:center;font-size:8.5px;color:#aaa;margin-top:6px}
+/* ---------- Open Finance overlay ---------- */
+.ofw{position:absolute;inset:0;z-index:80;background:#0b0e14;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .28s ease;font-size:12px;overflow:hidden}
+.ofw.on{opacity:1;visibility:visible}
+.ofw-status{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 3px;font-family:var(--font);font-size:10.5px;color:#fff;font-weight:600;flex:0 0 auto}
+.ofw-status .rgt{display:flex;gap:5px;align-items:center;opacity:.85;font-size:9px}
+.ofw-scr{flex:1;overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column}
+.ofw-scr::-webkit-scrollbar{width:0}
+.ofs{flex:1;flex-direction:column}
+.ofw-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;color:#fff;font-weight:700;font-size:13px;flex:0 0 auto}
+.ofw-bar .bk{color:#8e97b5;font-size:16px;cursor:pointer}
+.ofw-bar .ttl{flex:1;text-align:center;margin-right:16px}
+.ofw-search{margin:0 14px 12px;background:#14161d;border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:8px 11px;color:#7d849b;font-size:11px;display:flex;gap:7px;align-items:center;flex:0 0 auto}
+.ofw-lbl{padding:0 14px;color:#8e97b5;font-size:10px;font-weight:700;letter-spacing:.6px;margin-bottom:9px}
+.ofw-banks{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 14px;margin-bottom:14px}
+.ofb{background:#14161d;border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:9px 4px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
+.ofb .mk{width:26px;height:26px;border-radius:50%;margin:0 auto 5px;display:flex;align-items:center;justify-content:center;font-family:var(--font);font-weight:800;font-size:11px;color:#fff}
+.ofb .nm{font-size:8.6px;color:#c8cee2;line-height:1.2}
+.ofb.sel{border-color:#00e07a;background:rgba(0,224,122,.08)}
+.ofb.sel::after{content:"\2713";position:absolute;top:4px;right:5px;color:#00e07a;font-size:9px;font-weight:800}
+.ofw-rows{padding:0 14px;display:flex;flex-direction:column;gap:1px}
+.ofr{display:flex;align-items:center;gap:9px;padding:8px 2px;border-bottom:1px solid rgba(255,255,255,.05)}
+.ofr .mk{width:22px;height:22px;border-radius:6px;background:#1d212c;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#9aa3bd;font-family:var(--font);flex:0 0 auto}
+.ofr .nm{font-size:11px;color:#e6e9f5}
+.ofw-cta{padding:12px 14px 16px;flex:0 0 auto;margin-top:auto}
+.ofw-btn{background:#00c96b;color:#04240f;font-family:var(--font);font-weight:800;font-size:12.5px;text-align:center;padding:11px;border-radius:9px;cursor:pointer}
+.ofw-btn.ghost{background:transparent;color:#00e07a;font-weight:700;padding:9px;margin-top:2px}
+.ofw-btn.dis{background:#1d212c;color:#666e85;cursor:default}
+.ofw-card{margin:0 14px;background:#14161d;border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden}
+.ofw-card .hd{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+.ofw-card .hd .k{font-size:9px;color:#8e97b5;letter-spacing:.5px}
+.ofw-card .hd .lnk{font-size:10px;color:#00e07a;font-weight:700}
+.ofw-card .bd{padding:10px 12px;display:flex;gap:9px;align-items:flex-start}
+.ofw-card .bd .mk{width:24px;height:24px;border-radius:50%;background:var(--rd);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex:0 0 auto}
+.ofw-card .bd .nm{font-size:11.5px;color:#fff;font-weight:700;margin-bottom:3px}
+.ofw-card .bd .ln{font-size:8.8px;color:#7d849b;line-height:1.45;word-break:break-all}
+.ofw-tot{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border-top:1px solid rgba(255,255,255,.06)}
+.ofw-tot .k{font-size:11px;color:#c8cee2;font-weight:700}
+.ofw-tot .v{font-family:var(--mono);font-size:13px;color:#fff;font-weight:700}
+.ofw-fine{padding:11px 16px;color:#6f7691;font-size:9px;line-height:1.5;text-align:center}
+.ofw-pw{text-align:center;color:#5d6480;font-size:9px;padding-bottom:14px}
+.ofw-pw b{color:#8e97b5}
+.ofw-splash{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px}
+.ofw-splash .logo{font-family:var(--font);font-weight:800;font-size:26px;color:#fff;letter-spacing:-.5px}
+.ofw-splash .pill{background:#fff;color:#111;border-radius:100px;padding:10px 26px;font-size:11.5px;font-weight:700;font-family:var(--font)}
+.ofw-amt{padding:6px 16px 14px}
+.ofw-amt .k{font-size:12.5px;color:#c8cee2;margin-bottom:4px}
+.ofw-amt .v{font-family:var(--mono);font-size:24px;font-weight:700;color:#fff}
+.ofw-sec{padding:0 16px}
+.ofw-sec .st{font-size:10px;color:#8e97b5;font-weight:700;letter-spacing:.6px;margin:12px 0 7px}
+.ofw-kv{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:10.5px}
+.ofw-kv .k{color:#8e97b5}
+.ofw-kv .v{color:#e6e9f5;text-align:right}
+.ofw-acts{padding:16px;display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.ofw-acts .a{text-align:center;padding:11px;border-radius:9px;font-family:var(--font);font-weight:700;font-size:12px;cursor:pointer}
+.ofw-acts .a.pri{background:var(--rd);color:#fff}
+.ofw-acts .a.sec{background:#1d212c;color:#c8cee2}
+.ofw-pin{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 22px;text-align:left}
+.ofw-pin h5{font-family:var(--font);font-size:15px;color:#fff;font-weight:700;margin-bottom:8px}
+.ofw-pin p{font-size:11px;color:#8e97b5;line-height:1.5;margin-bottom:26px}
+.ofw-dots{display:flex;gap:16px;justify-content:center}
+.ofw-dots i{width:9px;height:9px;border-radius:50%;background:#2c3040;transition:background .2s,transform .2s}
+.ofw-dots i.f{background:#fff;transform:scale(1.15)}
+.ofw-hop{display:flex;align-items:center;justify-content:center;gap:12px;padding:30px 0 18px}
+.ofw-hop .ic{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff}
+.ofw-hop .ar{color:#8e97b5;font-size:14px}
+.ofw-rd{padding:0 20px}
+.ofw-rd h5{font-family:var(--font);font-size:17px;color:#fff;font-weight:700;margin-bottom:9px}
+.ofw-rd p{font-size:10.8px;color:#8e97b5;line-height:1.55;margin-bottom:8px}
+.ofw-step{display:flex;align-items:center;gap:9px;background:#14161d;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;margin-top:9px;font-size:11px;color:#c8cee2;opacity:.35;transition:opacity .3s}
+.ofw-step.on{opacity:1}
+.ofw-step .ck{width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex:0 0 auto}
+.ofw-step .ck.g{background:rgba(0,224,122,.15);color:#00e07a}
+.ofw-step .ck.b{background:rgba(0,138,62,.2);color:var(--rd-lt)}
+.ofw-of{text-align:center;color:#5d6480;font-size:9.5px;padding:22px 0 16px;margin-top:auto;letter-spacing:.5px}
+.of-btn:hover{background:rgba(0,138,62,.08)}
+.pix{display:block;font-family:var(--mono);font-size:9px;line-height:1.5;word-break:break-all;overflow-wrap:anywhere;background:#f4faf6;border:1px dashed #b9ccc0;border-radius:8px;padding:9px 10px;color:#0a1a12;margin-top:8px}
+.pix .cop{display:block;margin-top:7px;color:var(--rd-dk);font-family:var(--body-f);font-size:10.5px;font-weight:800;cursor:pointer}
+.of-replay{font-size:11px;color:var(--dim);text-align:center;padding:10px 0 0;cursor:pointer}
+.of-replay b{color:var(--rd-dk)}
+.of-replay:hover{color:var(--rd)}
+
+/* ---------- Beleza · provador virtual ---------- */
+.selfie{width:150px;height:184px;border-radius:12px;overflow:hidden;background:linear-gradient(#f3e9df,#e6d3c1);box-shadow:0 1px .5px rgba(0,0,0,.15);display:block}
+.selfie svg{width:100%;height:100%;display:block}
+.selfie.cap{position:relative}
+.proc{display:flex;align-items:center;gap:9px;background:#fff;border-radius:8px;padding:10px 12px;box-shadow:0 1px .5px rgba(0,0,0,.12);align-self:stretch;font-size:11px;color:#333;max-width:100%}
+.proc .sp{width:16px;height:16px;border:2px solid rgba(0,138,62,.25);border-top-color:var(--rd);border-radius:50%;animation:bspin .7s linear infinite;flex:0 0 auto}
+.locard{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px .5px rgba(0,0,0,.12);align-self:stretch}
+.locard .lmap{height:70px;background:linear-gradient(135deg,#cfe9d8,#eaf6ee);position:relative;display:flex;align-items:center;justify-content:center;font-size:24px}
+.locard .lmap::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,102,44,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,102,44,.08) 1px,transparent 1px);background-size:16px 16px}
+.locard .li{padding:9px 11px}
+.locard .li .nm{font-size:11.5px;font-weight:800;color:#0a1a12}
+.locard .li .ad{font-size:10.5px;color:#667781;margin-top:2px;line-height:1.35}
+.locard .li .cta2{color:var(--rd);font-size:10.5px;font-weight:700;margin-top:7px;display:flex;align-items:center;gap:5px}
+.cchips{display:flex;gap:7px;align-self:stretch}
+.cchip{flex:1;text-align:center;border:1px solid #dfe6e1;border-radius:9px;padding:8px 4px;font-size:9px;cursor:pointer;background:#fff;color:#333;font-weight:600;transition:.15s}
+.cchip:hover{border-color:var(--rd)}
+.cchip .sw{width:18px;height:18px;border-radius:50%;margin:0 auto 4px;border:1px solid rgba(0,0,0,.12)}
+
 .vf{width:13px;height:13px}
 </style>
 </head>
@@ -547,7 +692,7 @@ footer b{color:var(--rd-dk)}
     <div class="chapters reveal">
       <a class="chp" href="#desafio"><span class="cn">01</span><h4>O desafio</h4><p>Volume crescente, hiperpersonalização na saúde e a fragmentação dos canais de atendimento.</p></a>
       <a class="chp" href="#blip"><span class="cn">02</span><h4>Sobre a Blip</h4><p>A plataforma por onde as marcas conversam no Brasil — e o canal onde a decisão já acontece.</p></a>
-      <a class="chp" href="#ciclo"><span class="cn">03</span><h4>Ciclo do contato inteligente</h4><p>Oito momentos, uma plataforma de gestão: escutar, atrair, entender, converter e apoiar.</p></a>
+      <a class="chp" href="#ciclo"><span class="cn">03</span><h4>Ciclo do contato inteligente</h4><p>Seis momentos, uma plataforma de gestão: da escuta social ao relacionamento contínuo.</p></a>
       <a class="chp" href="#casos"><span class="cn">04</span><h4>Casos de uso</h4><p>Vendas, pós-venda e serviços rodando sobre todo o ecossistema Blip.</p></a>
       <a class="chp" href="#ganhos"><span class="cn">05</span><h4>Resumo dos ganhos</h4><p>A jornada completa em mockups e a gestão em uma plataforma só.</p></a>
     </div>
@@ -631,7 +776,7 @@ footer b{color:var(--rd-dk)}
   <div class="wrap">
     <div class="reveal">
       <div class="eyebrow">Ciclo do contato inteligente</div>
-      <h2 style="max-width:22ch">8 momentos em uma única <span class="g">plataforma de gestão.</span></h2>
+      <h2 style="max-width:22ch">6 momentos em uma única <span class="g">plataforma de gestão.</span></h2>
       <p class="lead">Cada ponto do ciclo abaixo é um produto do ecossistema Blip trabalhando junto — da escuta social à fidelização. Passe pelos nós para ver o que cada momento entrega na operação da RD Saúde.</p>
     </div>
     <div class="cyclegrid">
@@ -870,21 +1015,78 @@ footer b{color:var(--rd-dk)}
     <div class="deep reveal">
       <div class="deep-txt">
         <div class="stepnum"><span class="cir">04</span> Converter <span class="prod">· Blip Payments</span></div>
-        <h3>Checkout 100% dentro do WhatsApp.</h3>
-        <p class="desc">Com o <b>Blip Payments</b> e integração com os sistemas de pagamento, o cliente escolhe, confirma e paga <b>sem sair da conversa</b> — com <b>WhatsApp Flows</b> montando o carrinho e <b>Pix via Open Finance</b> finalizando em segundos. Cada redirecionamento a menos é um abandono a menos.</p>
+        <h3>Checkout 100% dentro do WhatsApp, com cross-sell e upsell inteligente.</h3>
+        <p class="desc">Com o <b>Blip Payments</b>, o cliente sem cadastro cria a conta na hora por <b>WhatsApp Flows</b>, a IA sugere <b>cross-sell e upsell</b> relevantes para elevar o ticket, e o pagamento acontece por <b>PIX copia e cola</b> (ou cartão) sem sair da conversa. Cada redirecionamento a menos é um abandono a menos.</p>
         <div class="exstack">
           <div class="ex">
             <div class="exh">Como funciona na operação da RD</div>
             <ol class="steps">
-              <li>O agente monta o pedido e abre um <b>WhatsApp Flow</b> com opções de entrega e retirada.</li>
-              <li>O cliente paga por <b>Pix (Open Finance)</b>, cartão ou boleto, dentro do chat.</li>
-              <li>Recebe confirmação e comprovante na mesma conversa.</li>
+              <li>Cliente sem conta? A IA abre um <b>WhatsApp Flow</b> e cria o cadastro (Nome, CPF, CEP) na hora.</li>
+              <li>Com o item no carrinho, a IA oferece <b>cross-sell/upsell</b> com gatilho de frete grátis — aumentando o ticket médio.</li>
+              <li>Pagamento por <b>PIX copia e cola</b>, cartão ou na entrega, com confirmação na mesma conversa.</li>
             </ol>
           </div>
           <div class="ex gain">
             <div class="exh">Ganhos reais</div>
-            <p><b>Menos fricção, mais conversão.</b> Sem redirecionar para o site, o funil fecha onde a intenção nasceu.</p>
-            <div class="gchips"><span>Sem abandono de checkout</span><span class="b">Pix Open Finance</span><span class="go">+ conversão</span></div>
+            <p><b>Mais ticket, menos fricção.</b> O cross-sell inteligente eleva o valor do pedido e o checkout no chat fecha o funil onde a intenção nasceu.</p>
+            <div class="gchips"><span class="go">+ ticket médio</span><span>Cross-sell / upsell</span><span class="b">PIX no chat</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="deep-vis">
+        <div style="text-align:center"><span class="cvhint">&#128070; Toque nos bot&otilde;es do WhatsApp para avan&ccedil;ar</span></div>
+        <div class="phone-frame" id="cvPhone">
+          <div class="phone-notch"></div>
+          <div class="wa-screen">
+            <div class="wa-header"><span class="wa-back">&#8249;</span><div class="wa-avatar">RD</div><div><div class="wa-contact-name">RD Sa&uacute;de <svg class="wa-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="wa-contact-status">online</div></div></div>
+            <div class="wa-body" id="cvBody"><div class="wa-date-chip">Hoje</div></div>
+            <div class="wa-input-bar"><div class="inp">Mensagem</div><div class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm7 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12z"/></svg></div></div>
+            <!-- Flow Modal (WhatsApp Flows) -->
+            <div class="flow-overlay" id="cvFlowOverlay"></div>
+            <div class="flow-modal" id="cvFlowModal">
+              <div class="fm-head"><span class="cls" id="cvFlowClose">&#10005;</span><h4>Cadastro</h4><span style="width:20px"></span></div>
+              <div class="fm-body">
+                <div class="fm-flabel"><span>&#128221;</span><span>WhatsApp Flow &middot; RD Sa&uacute;de</span></div>
+                <h3>Crie seu cadastro</h3>
+                <p class="fm-sub">Preencha rapidinho para checarmos o estoque da loja mais pr&oacute;xima.</p>
+                <label>Nome completo</label>
+                <input type="text" id="cvNome" placeholder="Seu nome">
+                <label>CPF</label>
+                <input type="text" id="cvCpf" placeholder="000.000.000-00">
+                <label>CEP</label>
+                <input type="text" id="cvCep" placeholder="00000-000">
+              </div>
+              <div class="fm-foot"><button id="cvFlowSubmit">Enviar cadastro</button><p class="fm-sec">&#128274; Dados criptografados via WhatsApp Flows</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="of-replay" id="cvReplay">&#9654; Chegue at&eacute; o pagamento e escolha <b>Open Finance</b> para ver o fluxo &middot; <b>reiniciar</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEEP DIVE 05 · ACOMPANHAR ============ -->
+<section id="acompanhar" data-nav="05 · Acompanhar">
+  <div class="wrap">
+    <div class="deep reveal">
+      <div class="deep-txt">
+        <div class="stepnum"><span class="cir">05</span> Acompanhar <span class="prod">&middot; Notifica&ccedil;&otilde;es ativas</span></div>
+        <h3>O cliente sabe do pedido antes de precisar perguntar.</h3>
+        <p class="desc">Com <b>notifica&ccedil;&otilde;es proativas de rastreamento</b> no WhatsApp, a RD avisa cada etapa &mdash; pedido confirmado, separado, a caminho e entregue &mdash; <b>sem o cliente abrir chamado</b>. Menos &quot;cad&ecirc; meu pedido?&quot; na central, mais tranquilidade.</p>
+        <div class="exstack">
+          <div class="ex">
+            <div class="exh">Como funciona na opera&ccedil;&atilde;o da RD</div>
+            <ol class="steps">
+              <li>A cada mudan&ccedil;a de status, a IA <b>dispara um aviso ativo</b> no WhatsApp.</li>
+              <li>O cliente acompanha tudo pela conversa, com link de rastreio.</li>
+              <li>D&uacute;vidas de status s&atilde;o resolvidas <b>antes de virarem contato</b> na central.</li>
+            </ol>
+          </div>
+          <div class="ex gain">
+            <div class="exh">Ganhos reais</div>
+            <p><b>Menos contatos reativos.</b> A informa&ccedil;&atilde;o chega na hora certa e desafoga o atendimento &mdash; cada &quot;cad&ecirc; meu pedido&quot; evitado &eacute; custo que n&atilde;o acontece.</p>
+            <div class="gchips"><span>&minus; contatos na central</span><span class="go">+ satisfa&ccedil;&atilde;o</span><span class="b">Status proativo</span></div>
           </div>
         </div>
       </div>
@@ -892,25 +1094,15 @@ footer b{color:var(--rd-dk)}
         <div class="phone-frame">
           <div class="phone-notch"></div>
           <div class="wa-screen">
-            <div class="wa-header"><span class="wa-back">‹</span><div class="wa-avatar">RD</div><div><div class="wa-contact-name">RD Saúde <svg class="wa-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="wa-contact-status">online</div></div></div>
+            <div class="wa-header"><span class="wa-back">&#8249;</span><div class="wa-avatar">RD</div><div><div class="wa-contact-name">RD Sa&uacute;de <svg class="wa-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="wa-contact-status">online</div></div></div>
             <div class="wa-body">
               <div class="wa-date-chip">Hoje</div>
-              <div class="msg msg-in">🛒 <strong>1× Losartana 50mg · 30cp</strong> — R$ 12,49<div class="msg-time">10:14</div></div>
-              <div class="wa-flow">
-                <div class="fh">📋 Finalizar pedido</div>
-                <div class="fb">
-                  <div class="fopt sel"><span class="rad"></span>Retirar · loja Moema</div>
-                  <div class="frow"><span>Subtotal</span><b>R$ 12,49</b></div>
-                  <div class="fbtn">Ir para pagamento</div>
-                </div>
-              </div>
-              <div class="wa-of">
-                <div class="oh">🔒 Pix · Open Finance</div>
-                <div class="ob">Pague pelo seu banco, sem copiar código.
-                  <div class="banks"><span class="bk">Banco 1</span><span class="bk">Banco 2</span><span class="bk">Banco 3</span></div>
-                </div>
-              </div>
-              <div class="msg msg-in">✅ <strong>Pago!</strong> Pronto para retirada na loja Moema em 20 min. 💚<div class="msg-time">10:15</div></div>
+              <div class="msg-sys">&#128276; Notifica&ccedil;&otilde;es autom&aacute;ticas do seu pedido</div>
+              <div class="msg msg-in">&#128230; Pedido <strong>#9876</strong> confirmado! J&aacute; estamos separando na loja Moema.<div class="msg-time">09:12</div></div>
+              <div class="msg msg-in">&#129658; Pedido conferido pela farm&aacute;cia e embalado.<div class="msg-time">09:40</div></div>
+              <div class="msg msg-in">&#128676; <strong>Saiu para entrega!</strong> Chega at&eacute; <strong>11:30</strong>.<div class="wa-cta">&#128205; Acompanhar no mapa</div><div class="msg-time">10:05</div></div>
+              <div class="msg msg-in">&#9989; <strong>Entregue!</strong> Boa recupera&ccedil;&atilde;o. &#128153; Qualquer coisa, &eacute; s&oacute; chamar.<div class="msg-time">11:18</div></div>
+              <div class="msg-sys">Nenhum contato com a central foi necess&aacute;rio &#9989;</div>
             </div>
             <div class="wa-input-bar"><div class="inp">Mensagem</div><div class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm7 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12z"/></svg></div></div>
           </div>
@@ -920,42 +1112,90 @@ footer b{color:var(--rd-dk)}
   </div>
 </section>
 
-<!-- ============ DEEP DIVE 05 · APOIAR ============ -->
-<section id="apoiar" data-nav="05 · Apoiar">
+<!-- ============ DEEP DIVE 06 · RELACIONAR ============ -->
+<section id="relacionar" data-nav="06 · Relacionar">
   <div class="wrap">
     <div class="deep rev reveal">
       <div class="deep-txt">
-        <div class="stepnum"><span class="cir">05</span> Apoiar <span class="prod">· BLiP Desk + Copilot</span></div>
-        <h3>O que sobra para o humano chega pronto.</h3>
-        <p class="desc">Quando a conversa precisa de gente, o <b>BLiP Desk com Copilot</b> entrega ao atendente um <b>resumo inteligente</b> da conversa, o sentimento do cliente e uma resposta sugerida no tom da RD — sem reler a thread inteira nem alternar entre abas.</p>
+        <div class="stepnum"><span class="cir">06</span> Relacionar <span class="prod">&middot; Cuidado ativo, recompra &amp; Stix</span></div>
+        <h3>A conversa continua &mdash; e mostra que a RD se importa.</h3>
+        <p class="desc">Mensagens ativas de relacionamento acompanham <b>como vai o uso do medicamento</b>, demonstram cuidado e abrem um canal direto. &Eacute; a&iacute; que a RD <b>acolhe, sugere complementos, reabastece e fideliza</b> &mdash; reiniciando o ciclo.</p>
         <div class="exstack">
           <div class="ex">
-            <div class="exh">O que o Copilot faz</div>
+            <div class="exh">Como funciona na opera&ccedil;&atilde;o da RD</div>
             <ol class="steps">
-              <li><b>Resumo automático</b>: quem é o cliente, o que quer, o que já foi tentado.</li>
-              <li><b>Resposta sugerida</b> a partir da base de conhecimento da RD.</li>
-              <li><b>Melhoria de texto</b> e transcrição de áudio em um clique.</li>
+              <li>Dias ap&oacute;s a compra, a IA pergunta <b>como est&aacute; o tratamento</b>.</li>
+              <li>Se h&aacute; um efeito colateral, ela <b>acolhe, sugere um complemento</b> e oferece falar com o farmac&ecirc;utico.</li>
+              <li>No fim do ciclo, prop&otilde;e a <b>recompra</b> e pontos <b>Stix</b>.</li>
             </ol>
           </div>
           <div class="ex gain">
             <div class="exh">Ganhos reais</div>
-            <p>Menor tempo médio de atendimento, respostas padronizadas e a <b>mesma equipe cuidando de mais gente</b>, com mais qualidade.</p>
-            <div class="gchips"><span>− TMA</span><span class="go">+ capacidade</span><span class="b">Padronização</span></div>
+            <p><b>Relacionamento que retém e vende.</b> Cuidado ativo aumenta a ades&atilde;o ao tratamento, o cross-sell e o LTV &mdash; com a marca presente no momento certo.</p>
+            <div class="gchips"><span class="go">+ LTV</span><span>Ades&atilde;o ao tratamento</span><span class="b">Cross-sell</span></div>
           </div>
         </div>
       </div>
       <div class="deep-vis">
-        <div class="copilot">
-          <div class="ch">✦ Copilot · Resumo Inteligente</div>
-          <div class="cb">
-            <div class="lb">Cliente</div>
-            <div>Marina Alves · cliente Stix · pedido <strong>478213004</strong>, medicamento contínuo atrasado 2 dias.</div>
-            <div class="lb">Sentimento</div>
-            <div class="chips"><span class="chip r">Insatisfação</span><span class="chip y">Risco de churn</span></div>
-            <div class="lb">Resposta sugerida</div>
-            <div class="sugg">"Marina, confirmei o reagendamento da sua entrega para amanhã até as 18h e apliquei um crédito de cortesia. Seu tratamento não vai ficar sem cobertura. 💚"</div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="wa-screen">
+            <div class="wa-header"><span class="wa-back">&#8249;</span><div class="wa-avatar">RD</div><div><div class="wa-contact-name">RD Sa&uacute;de <svg class="wa-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="wa-contact-status">online</div></div></div>
+            <div class="wa-body">
+              <div class="wa-date-chip">Hoje</div>
+              <div class="msg-sys">&#128172; Mensagem ativa de relacionamento &middot; 14 dias ap&oacute;s a compra</div>
+              <div class="msg msg-in">Oi, Ana! &#128153; Passando para saber como est&aacute; indo seu tratamento com o <strong>Mounjaro</strong>. Est&aacute; se adaptando bem?<div class="msg-time">10:00</div></div>
+              <div class="msg msg-out">Oi! No geral estou bem, mas tenho sentido um pouco de n&aacute;usea &#129326;<div class="msg-time">10:03</div></div>
+              <div class="msg msg-in">Obrigada por contar! &#128591; N&aacute;usea &eacute; comum nas primeiras semanas. Muita gente sente al&iacute;vio com <strong>Vitamina B6 + Gengibre</strong>. Posso te mostrar uma op&ccedil;&atilde;o?<div class="msg-time">10:03</div></div>
+              <div class="waprod"><div class="wpi">&#128138;</div><div><div class="wpt">Vitamina B6 + Gengibre</div><div class="wpp">R$ 29,90</div></div></div>
+              <div class="msg msg-in">E se preferir, te conecto agora com um <strong>farmac&ecirc;utico da RD</strong> para te orientar. Quer? &#128105;&#8205;&#9877;&#65039;<div class="msg-time">10:04</div></div>
+            </div>
+            <div class="wa-input-bar"><div class="inp">Mensagem</div><div class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm7 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12z"/></svg></div></div>
           </div>
-          <div class="cf"><span>Sugerir resposta</span><span>Melhorar texto</span><span>Transcrever áudio</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BELEZA & ESTETICA (Raia Conceito) ============ -->
+<section id="beleza" data-nav="Beleza &amp; est&eacute;tica">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Beleza &amp; est&eacute;tica</div>
+      <h2 style="max-width:24ch">O mesmo ecossistema, agora para <span class="g">beleza e est&eacute;tica.</span></h2>
+      <p class="lead">Tudo o que a RD faz em sa&uacute;de vale tamb&eacute;m para a categoria de beleza premium &mdash; e a <b>Raia Conceito</b> (a loja conceito de beleza e bem-estar no Itaim Bibi, com consultoras especializadas e an&aacute;lise de pele) &eacute; o cen&aacute;rio perfeito. O WhatsApp vira a porta de entrada: descoberta, <b>provador virtual</b>, agendamento de consultoria e ponte para a loja f&iacute;sica.</p>
+    </div>
+    <div class="deep reveal" style="margin-top:5vh">
+      <div class="deep-txt">
+        <div class="stepnum"><span class="cir" style="width:auto;padding:0 10px;border-radius:13px">&#10024;</span> Provador virtual <span class="prod">&middot; Studio + IA de imagem</span></div>
+        <h3>Experimentar antes de comprar &mdash; sem sair do WhatsApp.</h3>
+        <p class="desc">A cliente pergunta onde testar um produto, a IA indica a <b>Raia Conceito</b> e o endere&ccedil;o, e ainda oferece um <b>provador virtual</b>: pede uma selfie e devolve a imagem com o produto aplicado. Descoberta e experimenta&ccedil;&atilde;o viram <b>venda e visita &agrave; loja</b>.</p>
+        <div class="exstack">
+          <div class="ex">
+            <div class="exh">Como funciona na opera&ccedil;&atilde;o da RD</div>
+            <ol class="steps">
+              <li>A IA indica a <b>Raia Conceito</b> (Itaim Bibi) e envia o endere&ccedil;o com mapa.</li>
+              <li>Oferece o <b>provador virtual</b>: recebe a selfie e aplica o produto na imagem.</li>
+              <li>Fecha a compra no chat ou <b>agenda uma consultoria</b> de beleza na loja.</li>
+            </ol>
+          </div>
+          <div class="ex gain">
+            <div class="exh">Ganhos reais</div>
+            <p><b>Experimenta&ccedil;&atilde;o gera convers&atilde;o.</b> O provador virtual reduz a inseguran&ccedil;a da compra de beleza, aumenta o ticket e leva tr&aacute;fego qualificado para a loja conceito.</p>
+            <div class="gchips"><span class="go">+ convers&atilde;o em beleza</span><span>Tr&aacute;fego para a loja</span><span class="b">Experi&ecirc;ncia premium</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="deep-vis">
+        <div style="text-align:center"><span class="cvhint">&#128070; Toque nos bot&otilde;es do WhatsApp para avan&ccedil;ar</span></div>
+        <div class="phone-frame" id="blPhone">
+          <div class="phone-notch"></div>
+          <div class="wa-screen">
+            <div class="wa-header"><span class="wa-back">&#8249;</span><div class="wa-avatar">RD</div><div><div class="wa-contact-name">Raia Conceito <svg class="wa-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="wa-contact-status">online</div></div></div>
+            <div class="wa-body" id="blBody"><div class="wa-date-chip">Hoje</div></div>
+            <div class="wa-input-bar"><div class="inp">Mensagem</div><div class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm7 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12z"/></svg></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1048,39 +1288,6 @@ footer b{color:var(--rd-dk)}
   </div>
 </section>
 
-<!-- ============ JORNADA INTERATIVA ============ -->
-<section id="jornada" data-nav="Jornada completa">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="eyebrow">A experiencia, na pratica</div>
-      <h2 style="max-width:24ch">A jornada completa, <span class="g">do jeito certo.</span></h2>
-      <p class="lead">Um fluxo real de compra ponta a ponta no WhatsApp, com <b>cadastro via WhatsApp Flows</b> e <b>pagamento com Blip Payments e Pix Open Finance</b>. Toque nos botoes dentro do celular para avancar cada etapa.</p>
-    </div>
-    <div class="jor-grid">
-      <div class="jor-side reveal">
-        <div class="jhint">&#128070; Toque para avancar as etapas</div>
-        <div class="jsteps" id="jorSteps">
-          <div class="jstep"><span class="jnum">1</span><div><div class="jt">Pedido</div><div class="jp">Escolha do produto na conversa</div><div class="jprod">Blip Studio</div></div></div>
-          <div class="jstep"><span class="jnum">2</span><div><div class="jt">Cadastro</div><div class="jp">Formulario nativo dentro do chat</div><div class="jprod">WhatsApp Flows</div></div></div>
-          <div class="jstep"><span class="jnum">3</span><div><div class="jt">Entrega</div><div class="jp">Retirada ou entrega expressa</div><div class="jprod">WhatsApp Flows</div></div></div>
-          <div class="jstep"><span class="jnum">4</span><div><div class="jt">Pagamento</div><div class="jp">Pix sem sair do WhatsApp</div><div class="jprod">Blip Payments &middot; Pix Open Finance</div></div></div>
-          <div class="jstep"><span class="jnum">&#10003;</span><div><div class="jt">Concluido</div><div class="jp">Pedido pago e pronto</div><div class="jprod">Funil fechado no canal</div></div></div>
-        </div>
-      </div>
-      <div class="reveal" style="justify-self:center">
-        <div class="phone-frame">
-          <div class="phone-notch"></div>
-          <div class="wa-screen">
-            <div class="wa-header"><span class="wa-back">&#8249;</span><div class="wa-avatar">RD</div><div><div class="wa-contact-name">RD Saude <svg class="wa-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="wa-contact-status">online</div></div></div>
-            <div class="wa-body" id="jorBody"></div>
-            <div class="wa-input-bar"><div class="inp">Mensagem</div><div class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm7 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12z"/></svg></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ RESUMO DOS GANHOS ============ -->
 <section id="ganhos" data-nav="Resumo dos ganhos">
   <div class="wrap">
@@ -1105,7 +1312,7 @@ footer b{color:var(--rd-dk)}
         <div class="plat-c"><div class="pn">🎯 Atrair</div><p>Blip Marketing — anúncios e sinais em um só lugar.</p></div>
         <div class="plat-c"><div class="pn">🧠 Entender</div><p>Blip Studio — orquestração de agentes de IA.</p></div>
         <div class="plat-c"><div class="pn">💳 Converter</div><p>Blip Payments — checkout e Pix Open Finance no chat.</p></div>
-        <div class="plat-c"><div class="pn">🤝 Apoiar</div><p>BLiP Desk + Copilot — o humano no lugar certo.</p></div>
+        <div class="plat-c"><div class="pn">💚 Relacionar</div><p>Mensagens ativas de cuidado, recompra e fidelização.</p></div>
         <div class="plat-c"><div class="pn">📊 Medir</div><p>Relatórios nativos — visão 360° da operação.</p></div>
       </div>
     </div>
@@ -1179,18 +1386,12 @@ var cycle=[
  {t:'Converter',role:'Checkout · Blip Payments',mini:'pago no chat',
   what:'Carrinho por WhatsApp Flows e pagamento por Pix Open Finance, cartão ou boleto — sem sair da conversa.',
   cs:'O pedido é pago por Pix dentro do chat; retirada ou entrega na mesma tela.'},
- {t:'Apoiar',role:'Humano + Copilot · BLiP Desk',mini:'IA para o time',
-  what:'Quando precisa de gente, o atendente recebe resumo, sentimento e resposta sugerida via Copilot — sem reler a thread.',
-  cs:'Seis linhas de resumo substituem a leitura do histórico inteiro antes da resposta do farmacêutico.'},
- {t:'Acompanhar',role:'Pós-pedido',mini:'status proativo',
-  what:'Status em tempo real e avisos de separação, retirada e entrega — antes de o cliente precisar perguntar.',
-  cs:'"Seu pedido está pronto para retirada na loja Savassi" chega automaticamente.'},
- {t:'Repor',role:'Recorrência',mini:'recompra na hora',
-  what:'Lembretes calculados pelo ciclo de uso do medicamento contínuo: a mensagem chega antes do remédio acabar.',
-  cs:'30 dias depois: "sua Losartana deve estar acabando — quer repetir?"'},
- {t:'Fidelizar',role:'O ciclo recomeça · Stix',mini:'LTV e cross-sell',
-  what:'Ofertas personalizadas e integração com o programa Stix. A próxima conversa parte do que já se sabe do cliente.',
-  cs:'Quem comprou protetor solar recebe oferta de pós-sol na semana seguinte, com pontos Stix.'}
+  {t:'Acompanhar',role:'Pós-pedido · Notificações ativas',mini:'tracking proativo',
+  what:'Notificações proativas de status do pedido — confirmado, separado, a caminho e entregue — para o cliente não precisar perguntar na central.',
+  cs:'"Seu pedido saiu para entrega e chega até as 11:30" chega sozinho, sem abrir chamado.'},
+ {t:'Relacionar',role:'Cuidado ativo, recompra & Stix',mini:'relacionamento contínuo',
+  what:'Mensagens ativas acompanham o uso do medicamento, mostram cuidado, sugerem complementos e reabastecem — reiniciando o ciclo e fidelizando.',
+  cs:'"Como está o uso do Mounjaro?" → cliente relata efeito colateral → o bot acolhe, sugere um suplemento e abre canal com o farmacêutico.'}
 ];
 var rn=document.getElementById('ringNodes'),cpn=document.getElementById('cyclePanel');
 if(rn&&cpn){
@@ -1389,6 +1590,375 @@ new IntersectionObserver(function(es){es.forEach(function(e){
 });},{threshold:.35}).observe(bd);
 })();
 
+/* ===== CONVERTER · checkout interativo (Neosaldina + cross-sell + Pix/Open Finance) ===== */
+(function(){
+"use strict";
+var body=document.getElementById('cvBody');
+var phone=document.getElementById('cvPhone');
+if(!body||!phone)return;
+var wa=phone.querySelector('.wa-screen');
+var timers=[];
+function later(fn,ms){var t=setTimeout(fn,ms);timers.push(t);return t;}
+function delay(ms){return new Promise(function(r){later(r,ms);});}
+function clearTimers(){timers.forEach(clearTimeout);timers=[];}
+
+function addMsg(html,type){
+  var d=document.createElement('div');
+  d.className='msg '+(type==='user'?'msg-out':'msg-in');
+  d.innerHTML=html+'<div class="msg-time">'+(type==='user'?'10:01':'10:01')+'</div>';
+  d.style.opacity='0';d.style.transform='translateY(6px)';
+  body.appendChild(d);
+  requestAnimationFrame(function(){d.style.transition='all .3s';d.style.opacity='1';d.style.transform='none';});
+  body.scrollTop=99999;return d;
+}
+function addProd(ic,name,price,free){
+  var d=document.createElement('div');d.className='waprod';
+  d.innerHTML='<div class="wpi">'+ic+'</div><div><div class="wpt">'+name+'</div><div class="wpp">'+price+'</div>'+(free?'<span class="wpfree">FRETE GR&Aacute;TIS</span>':'')+'</div>';
+  d.style.opacity='0';d.style.transform='translateY(6px)';
+  body.appendChild(d);
+  requestAnimationFrame(function(){d.style.transition='all .3s';d.style.opacity='1';d.style.transform='none';});
+  body.scrollTop=99999;return d;
+}
+function addBtns(btns){
+  var wrap=document.createElement('div');wrap.className='wa-btn-row';wrap.style.opacity='0';wrap.style.transform='translateY(6px)';
+  var bw=document.createElement('div');bw.className='wa-btns';
+  btns.forEach(function(b){
+    var btn=document.createElement('div');btn.className='wa-btn';if(b.cls)btn.classList.add(b.cls);
+    btn.innerHTML=b.text;
+    btn.addEventListener('click',function(){wrap.style.pointerEvents='none';wrap.style.opacity='.45';b.fn();});
+    bw.appendChild(btn);
+  });
+  wrap.appendChild(bw);body.appendChild(wrap);
+  requestAnimationFrame(function(){wrap.style.transition='all .3s';wrap.style.opacity='1';wrap.style.transform='none';});
+  body.scrollTop=99999;
+}
+function addList(header,opts){
+  var wrap=document.createElement('div');wrap.className='wa-btn-row';wrap.style.opacity='0';wrap.style.transform='translateY(6px)';
+  var lb=document.createElement('div');lb.className='listbtn';
+  var open=false;
+  var hd=document.createElement('div');hd.className='lh';hd.innerHTML=header;
+  lb.appendChild(hd);
+  var body2=document.createElement('div');
+  opts.forEach(function(o){
+    var el=document.createElement('div');el.className='listopt'+(o.mut?' mut':'');
+    el.innerHTML='<span class="lo-ic">'+o.ic+'</span>'+o.text+(o.tag?'<span class="lo-tag">'+o.tag+'</span>':'');
+    if(!o.mut)el.addEventListener('click',function(){wrap.style.pointerEvents='none';wrap.style.opacity='.45';o.fn();});
+    body2.appendChild(el);
+  });
+  hd.addEventListener('click',function(){open=!open;body2.querySelectorAll('.listopt').forEach(function(e){e.style.display=open?'flex':'none';});});
+  body2.querySelectorAll?null:null;
+  Array.prototype.forEach.call(body2.children,function(e){e.style.display='none';});
+  lb.appendChild(body2);wrap.appendChild(lb);body.appendChild(wrap);
+  requestAnimationFrame(function(){wrap.style.transition='all .3s';wrap.style.opacity='1';wrap.style.transform='none';});
+  body.scrollTop=99999;
+}
+
+/* ---- Flow modal ---- */
+var flowOverlay=document.getElementById('cvFlowOverlay');
+var flowModal=document.getElementById('cvFlowModal');
+function openFlow(){flowOverlay.classList.add('open');flowModal.classList.add('open');}
+function closeFlow(){flowOverlay.classList.remove('open');flowModal.classList.remove('open');}
+document.getElementById('cvFlowClose').onclick=closeFlow;
+flowOverlay.onclick=closeFlow;
+document.getElementById('cvFlowSubmit').onclick=function(){
+  closeFlow();
+  addMsg('&#128221; Cadastro enviado (Nome, CPF, CEP)','user');
+  delay(1100).then(function(){
+    addMsg('Cadastro conclu&iacute;do com sucesso, <strong>Ana</strong>! &#127881;<br><br>Busquei pelo seu CEP e a loja mais pr&oacute;xima tem <strong>Neosaldina (30 dr&aacute;geas)</strong> em estoque!<br><br>&#128176; Valor: <strong>R$ 27,90</strong>');
+    return delay(700);
+  }).then(function(){
+    addProd('&#128138;','Neosaldina &middot; 30 dr&aacute;geas','R$ 27,90');
+    return delay(500);
+  }).then(function(){
+    addMsg('Podemos adicionar este item ao seu carrinho?');
+    return delay(500);
+  }).then(function(){
+    addBtns([
+      {text:'&#128722; Adicionar',fn:stepCross},
+      {text:'&#10060; Cancelar',fn:function(){addMsg('&#10060; Cancelar','user');delay(900).then(function(){addMsg('Tudo bem! Cancelei por aqui. Quando quiser, &eacute; s&oacute; mandar um &quot;Oi&quot;. &#128075;');finish();});}}
+    ]);
+  });
+};
+
+/* ---- cross-sell / upsell ---- */
+function stepCross(){
+  addMsg('&#128722; Adicionar','user');
+  delay(1000).then(function(){
+    addMsg('Neosaldina adicionada ao carrinho! &#9989;<br><br>&#128161; <strong>Dica de sa&uacute;de:</strong> quem leva esse item costuma levar tamb&eacute;m a <strong>Vitamina C Targifor + Zinco</strong>.<br><br>&#127873; Levando agora, voc&ecirc; ganha <strong>Frete Gr&aacute;tis</strong>! Vamos aproveitar?');
+    return delay(700);
+  }).then(function(){
+    addProd('&#127818;','Vitamina C Targifor + Zinco','R$ 39,90',true);
+    return delay(500);
+  }).then(function(){
+    addBtns([
+      {text:'&#10133; Adicionar Oferta',fn:function(){summary(true);}},
+      {text:'&#10145;&#65039; Ir pro Carrinho',fn:function(){summary(false);}}
+    ]);
+  });
+}
+var TOTAL='67,80';
+function summary(up){
+  TOTAL=up?'67,80':'33,80';
+  addMsg(up?'&#10133; Adicionar Oferta':'&#10145;&#65039; Ir pro Carrinho','user');
+  delay(1000).then(function(){
+    var s=up
+      ?'Excelente escolha! Voc&ecirc; garantiu o <strong>Frete Gr&aacute;tis</strong>. &#128677;&#128168;<br><br>&#128203; <strong>Resumo do Pedido</strong><br>1&times; Neosaldina (30 drg) &mdash; R$ 27,90<br>1&times; Vitamina C Targifor &mdash; R$ 39,90<br>&#128666; Frete: R$ 0,00<br><strong>Total: R$ 67,80</strong>'
+      :'&#128203; <strong>Resumo do Pedido</strong><br>1&times; Neosaldina (30 drg) &mdash; R$ 27,90<br>&#128666; Frete: R$ 5,90<br><strong>Total: R$ 33,80</strong>';
+    addMsg(s+'<br><br>Confirmar para o endere&ccedil;o cadastrado?');
+    return delay(600);
+  }).then(function(){
+    addBtns([
+      {text:'&#9989; Confirmar Pedido',fn:stepPay},
+      {text:'&#9999;&#65039; Alterar Endere&ccedil;o',fn:function(){addMsg('&#9999;&#65039; Alterar Endere&ccedil;o','user');delay(800).then(function(){addMsg('Sem problemas &mdash; me envie o novo CEP que eu atualizo. &#128205;');delay(500).then(function(){addBtns([{text:'&#9989; Confirmar Pedido',fn:stepPay}]);});});}}
+    ]);
+  });
+}
+
+/* ---- pagamento ---- */
+function stepPay(){
+  addMsg('&#9989; Confirmar Pedido','user');
+  delay(1000).then(function(){
+    addMsg('Tudo certo com o pedido! Agora selecione a forma de pagamento.<br><br><em>Pagamentos via Pix t&ecirc;m aprova&ccedil;&atilde;o imediata e aceleram a entrega!</em>');
+    return delay(600);
+  }).then(function(){
+    addBtns([
+      {text:'&#128179; Pix Copia e Cola',fn:doPix},
+      {text:'&#127974; Open Finance',cls:'of-btn',fn:doOpenFinance}
+    ]);
+  });
+}
+function doPix(){
+  addMsg('Pix Copia e Cola','user');
+  delay(1000).then(function(){
+    addMsg('&Oacute;tima escolha! &#128241; Aqui est&aacute; o seu <strong>Pix Copia e Cola</strong> &mdash; v&aacute;lido por 15 min. Copie e cole no app do seu banco para pagar <strong>R$ '+TOTAL+'</strong>:<span class="pix">00020126580014br.gov.bcb.pix0136rdsaude-pay-8f21ab5204000053039865406'+TOTAL.replace(',','')+'5802BR5913RD SAUDE S.A.6009SAO PAULO62070503***6304A1B2<span class="cop" data-cop>&#10697; Copiar c&oacute;digo</span></span>');
+    return delay(700);
+  }).then(function(){
+    addBtns([{text:'&#9989; Simular pagamento',fn:paidPix}]);
+  });
+}
+function paidPix(){
+  addMsg('Pagamento realizado','user');
+  delay(1200).then(confirmPaid);
+}
+function doOpenFinance(){
+  addMsg('Pagar com banco (Open Finance)','user');
+  delay(300).then(initOF);
+}
+function confirmPaid(msg){
+  addMsg((msg||'Pagamento confirmado! &#129321;&#128184;')+'<br><br>Seu pedido <strong>#9876</strong> j&aacute; est&aacute; sendo separado pela loja mais pr&oacute;xima. Prazo estimado: at&eacute; <strong>45 minutos</strong>.');
+  delay(800).then(function(){
+    addMsg('Voc&ecirc; recebe atualiza&ccedil;&otilde;es por aqui. Obrigado por escolher a RD Sa&uacute;de! &#128153;');
+    finish();
+  });
+}
+function finish(){delay(500).then(function(){addBtns([{text:'&#128260; Recome&ccedil;ar a jornada',fn:reset}]);});}
+
+/* ---- Open Finance overlay ---- */
+function initOF(){
+  var BANKS=[{n:'Nubank',c:'#820ad1',i:'N'},{n:'Ita\u00fa',c:'#ec7000',i:'I'},{n:'Bradesco',c:'#cc092f',i:'B'},{n:'Caixa',c:'#0070af',i:'C'}];
+  var OTHERS=['Banco do Brasil','Santander','Inter','C6 Bank','99Pay'];
+  var bank=BANKS[0];
+  var banks=BANKS.map(function(b,i){return '<div class="ofb" data-b="'+i+'"><div class="mk" style="background:'+b.c+'">'+b.i+'</div><div class="nm">'+b.n+'</div></div>';}).join('');
+  var rows=OTHERS.map(function(o){return '<div class="ofr"><div class="mk">'+o[0]+'</div><div class="nm">'+o+'</div></div>';}).join('');
+  var T='R$ '+TOTAL;
+  var ofw=document.createElement('div');ofw.className='ofw on';
+  ofw.innerHTML='<div class="ofw-status"><span>10:02</span><span class="rgt">&#9662; &#9776; &#9635;</span></div><div class="ofw-scr">'
+    +'<div class="ofs" data-s="1" style="display:flex"><div class="ofw-bar"><span class="bk of-close">&#8249;</span><span class="ttl">Pagar com Pix</span></div><div class="ofw-search">&#128269; Busque o seu banco</div><div class="ofw-lbl">BANCOS POPULARES</div><div class="ofw-banks">'+banks+'</div><div class="ofw-lbl">OUTROS</div><div class="ofw-rows">'+rows+'</div><div class="ofw-cta"><div class="ofw-btn dis of-pay1">Selecione um banco</div><div class="ofw-btn ghost">Copiar c\u00f3digo Pix</div></div></div>'
+    +'<div class="ofs" data-s="2" style="display:none"><div class="ofw-bar"><span class="bk of-close">&#8249;</span><span class="ttl">Pagar com Pix</span></div><div class="ofw-card"><div class="hd"><span class="k">ENVIAR PARA</span></div><div class="bd"><div class="mk">&#128138;</div><div><div class="nm">RD Sa\u00fade</div><div class="ln">Nome: RD SAUDE S.A.</div><div class="ln">CNPJ: 61.585.865/0001-51</div></div></div><div class="hd" style="border-top:1px solid rgba(255,255,255,.06)"><span class="k">PAGANDO COM</span><span class="lnk">Alterar</span></div><div class="bd"><div class="mk of-bmk"></div><div><div class="nm of-bnm"></div><div class="ln">Conta corrente &middot; Open Finance</div></div></div><div class="ofw-tot"><span class="k">Total</span><span class="v">'+T+'</span></div></div><div class="ofw-fine">Confirme que o app do seu banco est\u00e1 instalado.</div><div class="ofw-cta"><div class="ofw-btn of-pay2">Pagar no <span class="of-bnm2"></span></div></div><div class="ofw-pw">Powered by <b>Open Finance</b></div></div>'
+    +'<div class="ofs" data-s="3" style="display:none"><div class="ofw-splash of-splash"><div class="logo of-bnm3"></div><div class="pill">Usar senha do celular</div></div></div>'
+    +'<div class="ofs" data-s="4" style="display:none"><div class="ofw-bar"><span class="bk of-close">&#10005;</span></div><div class="ofw-amt"><div class="k">Pagando</div><div class="v">'+T+'</div></div><div class="ofw-sec"><div class="st">TITULAR</div><div class="ofw-kv"><span class="k">Nome</span><span class="v">Ana Costa</span></div><div class="ofw-kv"><span class="k">CPF</span><span class="v">&bull;&bull;&bull;.412.870-&bull;&bull;</span></div><div class="ofw-kv"><span class="k">Tipo</span><span class="v">Pix</span></div><div class="ofw-kv"><span class="k">Iniciado em</span><span class="v">WhatsApp</span></div><div class="st">DESTINO</div><div class="ofw-kv"><span class="k">Nome</span><span class="v">RD SAUDE S.A.</span></div></div><div class="ofw-acts"><div class="a pri of-auth">Autorizar</div><div class="a sec of-close">Cancelar</div></div></div>'
+    +'<div class="ofs" data-s="5" style="display:none"><div class="ofw-bar"><span class="bk of-close">&#8249;</span></div><div class="ofw-pin"><h5>Digite sua senha de 4 d\u00edgitos</h5><p>Mesma senha de 4 d\u00edgitos do seu cart\u00e3o.</p><div class="ofw-dots"><i></i><i></i><i></i><i></i></div></div></div>'
+    +'<div class="ofs" data-s="6" style="display:none"><div class="ofw-hop"><div class="ic of-bic"></div><div class="ar">&#8594;</div><div class="ic" style="background:#25d366">&#9990;</div></div><div class="ofw-rd"><h5>Redirecionando&hellip;</h5><p>Etapa segura via Open Finance.</p><div class="ofw-step s1"><span class="ck g">&#10003;</span>Transfer\u00eancia autorizada</div><div class="ofw-step s2"><span class="ck b">&#8594;</span>Voltando para o WhatsApp</div></div><div class="ofw-of">open finance</div></div>'
+    +'</div>';
+  wa.appendChild(ofw);
+  var steps=ofw.querySelectorAll('.ofs');
+  var ot=[];function olater(fn,ms){ot.push(setTimeout(fn,ms));}
+  function show(n){steps.forEach(function(s){s.style.display=(s.getAttribute('data-s')==String(n)?'flex':'none');});}
+  function paint(){
+    ofw.querySelector('.of-bmk').textContent=bank.i;ofw.querySelector('.of-bmk').style.background=bank.c;
+    ofw.querySelector('.of-bnm').textContent=bank.n;ofw.querySelector('.of-bnm2').textContent=bank.n;ofw.querySelector('.of-bnm3').textContent=bank.n;
+    ofw.querySelector('.of-splash').style.background=bank.c;
+    var bic=ofw.querySelector('.of-bic');bic.textContent=bank.i;bic.style.background=bank.c;
+  }
+  function ofClose(){ot.forEach(clearTimeout);ot=[];ofw.classList.remove('on');setTimeout(function(){if(ofw.parentNode)ofw.parentNode.removeChild(ofw);},300);
+    if(!phone.dataset.ofcancel){/* reopen path handled by button re-enable */}}
+  ofw.querySelectorAll('.ofb').forEach(function(el){el.addEventListener('click',function(){
+    ofw.querySelectorAll('.ofb').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');
+    bank=BANKS[+el.getAttribute('data-b')];paint();
+    var p=ofw.querySelector('.of-pay1');p.classList.remove('dis');p.textContent='Pagar no '+bank.n;
+  });});
+  ofw.querySelector('.of-pay1').addEventListener('click',function(){if(this.classList.contains('dis'))return;show(2);});
+  ofw.querySelector('.of-pay2').addEventListener('click',function(){show(3);olater(function(){show(4);},1400);});
+  ofw.querySelector('.of-auth').addEventListener('click',function(){
+    show(5);
+    var dots=ofw.querySelectorAll('.ofw-dots i');
+    dots.forEach(function(d,i){olater(function(){d.classList.add('f');},320*(i+1));});
+    olater(function(){
+      show(6);
+      olater(function(){ofw.querySelector('.ofw-step.s1').classList.add('on');},500);
+      olater(function(){ofw.querySelector('.ofw-step.s2').classList.add('on');},1200);
+      olater(function(){
+        ofw.classList.remove('on');setTimeout(function(){if(ofw.parentNode)ofw.parentNode.removeChild(ofw);},300);
+        confirmPaid('Pagamento de <strong>R$ '+TOTAL+'</strong> confirmado! &#9989; Recebemos via <strong>Open Finance</strong> &mdash; sem copiar c&oacute;digo nenhum.');
+        body.scrollTop=99999;
+      },2600);
+    },1700);
+  });
+  ofw.querySelectorAll('.of-close').forEach(function(el){el.addEventListener('click',ofClose);});
+  paint();
+}
+
+/* ---- copy pix ---- */
+body.addEventListener('click',function(e){
+  var c=e.target.closest('[data-cop]');if(!c)return;
+  try{if(navigator.clipboard){var code=c.parentNode.textContent.replace(c.textContent,'').trim();navigator.clipboard.writeText(code);}}catch(err){}
+  c.innerHTML='&#10003; C&oacute;digo copiado';c.style.color='#0a7a3a';
+});
+
+/* ---- boot / reset ---- */
+function reset(){
+  clearTimers();closeFlow();
+  var of=wa.querySelector('.ofw');if(of&&of.parentNode)of.parentNode.removeChild(of);
+  body.innerHTML='<div class="wa-date-chip">Hoje</div>';
+  boot();
+}
+function boot(){
+  addMsg('Oi! Queria comprar uma caixa de Neosaldina.','user');
+  delay(1200).then(function(){
+    addMsg('Ol&aacute;! &#128153; Bem-vindo(a) &agrave; <strong>RD Sa&uacute;de</strong> no WhatsApp. Vi que voc&ecirc; ainda n&atilde;o tem cadastro com a gente. Para checarmos o estoque da loja mais pr&oacute;xima e agilizar seu pedido, &eacute; rapidinho:');
+    return delay(700);
+  }).then(function(){
+    addBtns([{text:'&#128221; Fazer Cadastro',fn:function(){openFlow();}}]);
+  });
+}
+document.getElementById('cvReplay').addEventListener('click',reset);
+
+var started=false;
+new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting&&!started){started=true;delay(400).then(boot);}});},{threshold:.3}).observe(phone);
+})();
+/* ===== BELEZA · provador virtual (Raia Conceito) ===== */
+(function(){
+"use strict";
+var body=document.getElementById('blBody');var phone=document.getElementById('blPhone');
+if(!body||!phone)return;
+var timers=[];function later(f,m){timers.push(setTimeout(f,m));}function delay(m){return new Promise(function(r){later(r,m);});}
+function clearAll(){timers.forEach(clearTimeout);timers=[];}
+var COLORS=[{n:'Rosa Nude',c:'#d98a86'},{n:'Cereja',c:'#b83b46'},{n:'Coral',c:'#e07a5a'}];
+var cur=COLORS[0];
+
+function fade(d){d.style.opacity='0';d.style.transform='translateY(6px)';requestAnimationFrame(function(){d.style.transition='all .3s';d.style.opacity='1';d.style.transform='none';});body.scrollTop=99999;}
+function addMsg(html,type){var d=document.createElement('div');d.className='msg '+(type==='user'?'msg-out':'msg-in');d.innerHTML=html+'<div class="msg-time">10:20</div>';body.appendChild(d);fade(d);return d;}
+function node(html,side){var d=document.createElement('div');d.style.alignSelf=(side==='user'?'flex-end':'flex-start');d.style.maxWidth='88%';d.innerHTML=html;body.appendChild(d);fade(d);return d;}
+function addBtns(btns){var wrap=document.createElement('div');wrap.className='wa-btn-row';var bw=document.createElement('div');bw.className='wa-btns';
+  btns.forEach(function(b){var el=document.createElement('div');el.className='wa-btn';el.innerHTML=b.text;el.addEventListener('click',function(){wrap.style.pointerEvents='none';wrap.style.opacity='.45';b.fn();});bw.appendChild(el);});
+  wrap.appendChild(bw);body.appendChild(wrap);fade(wrap);}
+
+/* rosto ilustrado (original) */
+function face(lip,after){
+  var spark = after ? '<g fill="#ffd54a"><path d="M100 34 l2.4 5.4 5.4 2.4 -5.4 2.4 -2.4 5.4 -2.4 -5.4 -5.4 -2.4 5.4 -2.4Z"/><path d="M20 52 l1.6 3.6 3.6 1.6 -3.6 1.6 -1.6 3.6 -1.6 -3.6 -3.6 -1.6 3.6 -1.6Z"/><path d="M96 96 l1.6 3.6 3.6 1.6 -3.6 1.6 -1.6 3.6 -1.6 -3.6 -3.6 -1.6 3.6 -1.6Z"/></g>' : '';
+  var gloss = after ? '<path d="M52 99 Q60 96 68 99" stroke="#ffffff" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".7"/>' : '';
+  return '<svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">'
+    +'<rect width="120" height="150" fill="#f1e2d2"/>'
+    +'<path d="M16 66 Q18 16 60 12 Q102 16 104 66 L104 150 L16 150Z" fill="#3b2b24"/>'
+    +'<ellipse cx="60" cy="78" rx="33" ry="39" fill="#ecc6a4"/>'
+    +'<path d="M27 62 Q32 30 60 28 Q88 30 93 62 Q78 46 60 48 Q42 46 27 62Z" fill="#3b2b24"/>'
+    +'<path d="M40 62 Q46 70 27 72 Q30 96 33 104 L33 150 L16 150 L16 66Z" fill="#3b2b24"/>'
+    +'<path d="M80 62 Q74 70 93 72 Q90 96 87 104 L87 150 L104 150 L104 66Z" fill="#3b2b24"/>'
+    +'<ellipse cx="49" cy="76" rx="3.4" ry="2.6" fill="#3b2b24"/>'
+    +'<ellipse cx="71" cy="76" rx="3.4" ry="2.6" fill="#3b2b24"/>'
+    +'<path d="M43 68 Q49 65 55 68" stroke="#3b2b24" stroke-width="1.8" fill="none" stroke-linecap="round"/>'
+    +'<path d="M65 68 Q71 65 77 68" stroke="#3b2b24" stroke-width="1.8" fill="none" stroke-linecap="round"/>'
+    +'<path d="M60 80 L57 90 Q60 92 63 90" stroke="#d3a480" stroke-width="1.6" fill="none" stroke-linecap="round"/>'
+    +'<path d="M49 99 Q60 93 71 99 Q60 108 49 99Z" fill="'+lip+'"/>'
+    +'<path d="M49 99 Q60 101 71 99" stroke="'+(after?'rgba(0,0,0,.18)':'rgba(0,0,0,.12)')+'" stroke-width="1" fill="none"/>'
+    +gloss+spark+'</svg>';
+}
+
+/* jornada */
+function boot(){
+  addMsg('Oi! Queria experimentar o <strong>hidratante labial da Cimed</strong> &#128132; Onde consigo testar?','user');
+  delay(1200).then(function(){
+    addMsg('Que &oacute;timo! &#10024; Voc&ecirc; pode experimentar pessoalmente na nossa <strong>Raia Conceito</strong> &mdash; a loja de beleza premium no Itaim Bibi:');
+    return delay(500);
+  }).then(function(){
+    node('<div class="locard"><div class="lmap">&#128205;</div><div class="li"><div class="nm">Raia Conceito</div><div class="ad">Rua Tabapu&atilde;, 795 &middot; Itaim Bibi &mdash; S&atilde;o Paulo/SP</div><div class="cta2">&#128506;&#65039; Ver rota no mapa</div></div></div>','bot');
+    return delay(700);
+  }).then(function(){
+    addMsg('E se quiser, d&aacute; para ver <strong>agora mesmo</strong> como fica em voc&ecirc;, sem sair do WhatsApp. Quer usar o <strong>provador virtual</strong>? &#129327;');
+    return delay(500);
+  }).then(function(){
+    addBtns([{text:'&#10024; Ver provador virtual',fn:askSelfie},{text:'&#128205; S&oacute; o endere&ccedil;o',fn:onlyAddr}]);
+  });
+}
+function onlyAddr(){addMsg('Combinado! &#128522; Te espero na Raia Conceito. Qualquer d&uacute;vida sobre produtos ou hor&aacute;rios, &eacute; s&oacute; chamar. &#128153;','bot');finish();}
+function askSelfie(){
+  addMsg('Quero sim! &#10024;','user');
+  delay(900).then(function(){
+    addMsg('Perfeito! Me envia uma <strong>selfie de frente</strong>, com boa luz &#129331;');
+    return delay(500);
+  }).then(function(){addBtns([{text:'&#128247; Enviar selfie',fn:sendSelfie}]);});
+}
+function sendSelfie(){
+  node('<div class="selfie cap">'+face('#c98a80',false)+'</div>','user');
+  delay(700).then(function(){
+    var pc=node('<div class="proc"><span class="sp"></span> Analisando seu tom de pele e aplicando o produto&hellip; &#10024;</div>','bot');
+    return delay(2100).then(function(){if(pc&&pc.parentNode)pc.parentNode.removeChild(pc);});
+  }).then(function(){
+    node('<div class="selfie cap">'+face(cur.c,true)+'</div>','bot');
+    return delay(500);
+  }).then(function(){
+    addMsg('Ficou incr&iacute;vel em voc&ecirc;! &#128149; Esse &eacute; o tom <strong>'+cur.n+'</strong> do Hidratante Labial Cimed.');
+    return delay(400);
+  }).then(showProduct);
+}
+function showProduct(){
+  node('<div class="waprod"><div class="wpi">&#128132;</div><div><div class="wpt">Hidratante Labial Cimed &middot; '+cur.n+'</div><div class="wpp">R$ 22,90</div></div></div>','bot');
+  delay(500).then(function(){
+    addBtns([
+      {text:'&#128722; Adicionar ao carrinho',fn:addCart},
+      {text:'&#128132; Ver outras cores',fn:showColors},
+      {text:'&#128105;&#8205;&#127908; Falar com consultora',fn:consultora}
+    ]);
+  });
+}
+function showColors(){
+  var chips=COLORS.map(function(c){return '<div class="cchip" data-lip="'+c.c+'" data-nm="'+c.n+'"><div class="sw" style="background:'+c.c+'"></div>'+c.n+'</div>';}).join('');
+  node('<div class="cchips">'+chips+'</div>','bot');
+  addMsg('Toque em uma cor para ver na sua foto &#128071;','bot');
+}
+function addCart(){
+  addMsg('&#128722; Adicionar ao carrinho','user');
+  delay(1000).then(function(){
+    addMsg('Adicionado! &#9989; Voc&ecirc; retira na <strong>Raia Conceito</strong> ou recebe em casa. E ganha <strong>pontos Stix</strong> nesta compra. &#128153;');
+    finish();
+  });
+}
+function consultora(){
+  addMsg('&#128105;&#8205;&#127908; Falar com consultora','user');
+  delay(1000).then(function(){
+    addMsg('Perfeito! Nossas <strong>consultoras de beleza</strong> da Raia Conceito fazem an&aacute;lise de pele e indica&ccedil;&atilde;o personalizada. Quer agendar uma visita?');
+    return delay(500);
+  }).then(function(){addBtns([{text:'&#128197; Agendar visita',fn:function(){addMsg('&#128197; Agendar visita','user');delay(900).then(function(){addMsg('Agendado! &#127881; Te esperamos na Raia Conceito. Enviei os detalhes por aqui. &#128153;');finish();});}}]);});
+}
+function finish(){delay(500).then(function(){addBtns([{text:'&#128260; Recome&ccedil;ar a jornada',fn:reset}]);});}
+
+/* trocar cor pela paleta */
+body.addEventListener('click',function(e){
+  var c=e.target.closest('[data-lip]');if(!c)return;
+  cur={n:c.getAttribute('data-nm'),c:c.getAttribute('data-lip')};
+  node('<div class="selfie cap">'+face(cur.c,true)+'</div>','bot');
+  addMsg('Agora no tom <strong>'+cur.n+'</strong>! &#128149; Curtiu?','bot');
+  delay(500).then(function(){
+    node('<div class="waprod"><div class="wpi">&#128132;</div><div><div class="wpt">Hidratante Labial Cimed &middot; '+cur.n+'</div><div class="wpp">R$ 22,90</div></div></div>','bot');
+    delay(400).then(function(){addBtns([{text:'&#128722; Adicionar ao carrinho',fn:addCart},{text:'&#128105;&#8205;&#127908; Falar com consultora',fn:consultora}]);});
+  });
+});
+
+function reset(){clearAll();cur=COLORS[0];body.innerHTML='<div class="wa-date-chip">Hoje</div>';boot();}
+
+var started=false;
+new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting&&!started){started=true;delay(400).then(boot);}});},{threshold:.3}).observe(phone);
+})();
 </script>
 </body>
 </html>
